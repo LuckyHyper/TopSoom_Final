@@ -1,0 +1,26 @@
+.navbar{
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    padding: 1rem;
+    background-color: #444;
+    color : #fff
+}
+.navbar__links {
+    display: flex;
+}
+.navbar__link {
+    padding: 0 0.3rem;
+    color:inherit;
+    text-decoration : none;
+}
+.navbar__burger {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    color:inherit;
+}
