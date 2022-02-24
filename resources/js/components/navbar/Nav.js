@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import './Nav.css';
 
 function Nav() {
 
+    const [showLinks, setShowLinks] = useState(false);
+    const handleShowLinks = ()=>{
+        setShowLinks(!showLinks);
+    }
+
         return (
-           <nav className="navbar">
+        <div>
+           <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
                <div className="navbar__logo">Logo</div>
                 <ul className="navbar__links">
                     <li className="navbar__item">
@@ -28,10 +34,12 @@ function Nav() {
                         </a>
                     </li>
                 </ul>
-                <button className="navbar__burger">
-                    <span className="burger-bar">.</span>
+                <button className="navbar__burger" onClick={handleShowLinks}>
+                    <span className="burger-bar"></span>
                 </button>
            </nav>
+           <br></br><br></br>
+           </div>
         );
     
 }

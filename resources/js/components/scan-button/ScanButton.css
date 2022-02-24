@@ -1,0 +1,29 @@
+.scan-btn{
+   position: fixed;
+   bottom:0;
+   right: 0;
+   z-index: 999;
+   margin: 0.8rem;
+  
+}
+.scan-btn a{
+    border-radius: 48%;
+    padding: 23px;
+}
+
+.add-btn,
+.add-btn::after{
+    display: block;
+    width: 22px;
+    height: 4px;
+    position: relative;
+    background: #fff;
+    border-radius: 20%;
+}
+.add-btn::after{
+       content: "";
+       position: absolute;
+    }
+.add-btn::after{
+    transform:  rotate(90deg);
+}

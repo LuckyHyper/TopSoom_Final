@@ -7,7 +7,8 @@
     width: 100%;
     padding: 1rem;
     background-color: #444;
-    color : #fff
+    color : #fff;
+    z-index: 1000;
 }
 .navbar__links {
     display: flex;
@@ -23,4 +24,72 @@
     background-color: transparent;
     border: none;
     color:inherit;
+    display: block;
+}
+@media screen and (max-width: 767px){
+    .navbar__links{
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        align-items: center;
+        right:-100vw;
+        bottom: 0;
+        height: 100vh;
+        padding: 2rem;
+        background-color: #000;
+    }
+    .show-nav .navbar__links{
+        width: 100vw;
+        right:0;
+
+    } 
+    .navbar__link{
+        display: block;
+        padding: 1.5rem;
+        font-size: 5vw;
+    }
+    .navbar__burger{
+        display: block;
+        position: fixed;
+        right:1.1rem ;
+        top: 0.8rem;
+
+    }
+    .navbar__burger:hover{
+        cursor: pointer;
+    }
+    .burger-bar,
+    .burger-bar::after,
+    .burger-bar::before {
+        display: block;
+        width: 30px;
+        height: 3px;
+        position: relative;
+        border-radius: 10px;
+        background: #fff;
+    }
+    
+    .burger-bar::after,
+    .burger-bar::before {
+       content: "";
+       position: absolute;
+       left:0;
+    }
+    .burger-bar::before {
+       transform: translateY(-10px);
+    }
+    .burger-bar::after {
+        transform: translateY(10px);
+    }
+    .show-nav .burger-bar::before {
+        transform: rotate(45deg);
+    }
+    .show-nav .burger-bar::after {
+        transform: rotate(-45deg);
+    }
+    .show-nav .burger-bar{
+        background: transparent;
+    }
+  
+    
 }
