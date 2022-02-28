@@ -1,16 +1,17 @@
-import  React from 'react';
-import Nav from '../components/navbar/Nav';
-import Main from '../components/main/Main';
-import Search from '../components/search-bar/Search';
-import ScanButton from '../components/scan-button/ScanButton';
+import React from "react";
+import Nav from "../components/navbar/Nav";
+import Main from "../components/main/Main";
+import Search from "../components/search-bar/Search";
+import ScanButton from "../components/scan-button/ScanButton";
 
-export default function Home(){
-    return(
+export default function Home(props) {
+
+    return (
         <div>
             <Nav />
             <Search />
             <ScanButton />
-            <Main />
+            <Main codeB={props.codeB}/>
         </div>
     );
 }

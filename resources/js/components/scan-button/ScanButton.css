@@ -3,22 +3,23 @@
    bottom:0;
    right: 0;
    z-index: 999;
-   margin: 0.8rem;
+   margin-bottom: 1rem;
+   margin-right: 0.8rem;
   
 }
 .scan-btn a{
     border-radius: 48%;
-    padding: 23px;
+    padding: 18px;
 }
 
 .add-btn,
 .add-btn::after{
     display: block;
-    width: 22px;
-    height: 4px;
+    width: 24px;
+    height: 5px;
     position: relative;
     background: #fff;
-    border-radius: 20%;
+    border-radius: 5px;
 }
 .add-btn::after{
        content: "";
@@ -26,4 +27,5 @@
     }
 .add-btn::after{
     transform:  rotate(90deg);
+    
 }

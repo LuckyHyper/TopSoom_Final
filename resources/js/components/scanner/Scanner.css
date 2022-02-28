@@ -1,0 +1,18 @@
+.scan-form {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.scan-page {
+    background: #dddddd;
+}
+.scan-input {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 250px;
+}

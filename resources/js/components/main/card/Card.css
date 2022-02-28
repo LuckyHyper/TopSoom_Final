@@ -1,0 +1,25 @@
+.bottom-area{
+    display: flex;
+    justify-content: flex-start;
+    margin-top:50px;
+}
+.card{
+    width: 220px;
+    height: 180px;
+    margin-bottom: 0.5rem;
+}
+a {
+    margin : 0 0.5rem;
+}
+a.card-link{
+    padding: 6px 12px;
+}
+.card-title{
+    padding: 0.8rem;
+}
+
+@media screen and (max-width: 473px){
+    .card{
+        width: 100vw;
+    }
+}

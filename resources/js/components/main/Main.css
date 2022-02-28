@@ -1,16 +1,9 @@
-.bottom-area{
-    display: flex;
-    justify-content: flex-end;
-}
-a {
-    margin : 0 0.5rem;
-}
-a.card-link{
-    padding: 6px 12px;
-}
 .cards{
     padding: 2rem 1rem 1rem;
+    display: flex;
 }
-.card{
-    margin-bottom: 0.5rem;
+@media screen and (max-width: 644px){
+    .cards{
+        flex-wrap: wrap;
+    }
 }
