@@ -36,7 +36,7 @@ class Main extends Component {
           item.product_id === codeB
         ); 
       }
-
+    
     render() {
         const id=0;
         const { error, isLoaded, items } = this.state;
@@ -46,17 +46,30 @@ class Main extends Component {
             return <div>Loading...</div>;
         } else {
             return (
+                <div>
+                { this.props.searchR != null ? <h1 className="product-title">{this.props.searchR}</h1> : ""}
                 <div className="cards">
-                    {this.props.codeB != null ?
-        
-                     items.filter(item => item.product_id == this.props.codeB ).map((item) => (
-                        <Card price={item.price} market_id={item.market_id} />)) 
+                    {(this.props.codeB != null) ?
+                    // if we search with code_bar
+                     items.filter(item => item.product_id == this.props.codeB ).map((itemCB) => (
+                       <div>
+                         {items.filter(itemF => itemF.product_name == itemCB.product_name).map((Res)=>(
+                            <Card product_name={Res.product_name} price={Res.price} market_id={Res.market_id} />   
+                         ))
+                         }
+                       </div>)) 
+                    // if we search with product name in search_input
+                        : (this.props.searchR != null) ?
+                             items.filter(item => item.product_name == this.props.searchR ).map((itemC) => (
+                            <Card product_name={itemC.product_name} price={itemC.price} market_id={itemC.market_id} />  
+                         )) 
+                    //else if there is no code_barre or search_input
                         :
-
                       items.map((item) => (
-                        <Card price={item.price} market_id={item.market_id} />
+                        <Card product_name={item.product_name} price={item.price} market_id={item.market_id} />
                     ))
                 }
+                </div>
                 </div>
             );
         }

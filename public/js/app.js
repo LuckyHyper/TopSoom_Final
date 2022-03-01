@@ -5399,24 +5399,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-/*class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-          codeB : null,
-    };
-  }
-  setCodeB(codeB){
-    console.log(codeB);
-    this.setState({
-      codeB : codeB
-    })
-  
-      }
-
-  render(){  */
-
 
 
 
@@ -5435,7 +5417,6 @@ function App() {
           codeB: codeB
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
-        exact: true,
         path: "/scanner",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_pages_Scanner__WEBPACK_IMPORTED_MODULE_2__["default"], {
           Codetransfer: function Codetransfer(codeB) {
@@ -5676,21 +5657,45 @@ var Main = /*#__PURE__*/function (_Component) {
           children: "Loading..."
         });
       } else {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "cards",
-          children: this.props.codeB != null ? items.filter(function (item) {
-            return item.product_id == _this3.props.codeB;
-          }).map(function (item) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_card_Card__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              price: item.price,
-              market_id: item.market_id
-            });
-          }) : items.map(function (item) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_card_Card__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              price: item.price,
-              market_id: item.market_id
-            });
-          })
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          children: [this.props.searchR != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+            className: "product-title",
+            children: this.props.searchR
+          }) : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "cards",
+            children: this.props.codeB != null ? // if we search with code_bar
+            items.filter(function (item) {
+              return item.product_id == _this3.props.codeB;
+            }).map(function (itemCB) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                children: items.filter(function (itemF) {
+                  return itemF.product_name == itemCB.product_name;
+                }).map(function (Res) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_card_Card__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    product_name: Res.product_name,
+                    price: Res.price,
+                    market_id: Res.market_id
+                  });
+                })
+              });
+            }) // if we search with product name in search_input
+            : this.props.searchR != null ? items.filter(function (item) {
+              return item.product_name == _this3.props.searchR;
+            }).map(function (itemC) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_card_Card__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                product_name: itemC.product_name,
+                price: itemC.price,
+                market_id: itemC.market_id
+              });
+            }) //else if there is no code_barre or search_input
+            : items.map(function (item) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_card_Card__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                product_name: item.product_name,
+                price: item.price,
+                market_id: item.market_id
+              });
+            })
+          })]
         });
       }
     }
@@ -5726,18 +5731,18 @@ function Card(props) {
     className: "card",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "card-body",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
         className: "card-title",
         children: props.market_id
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "bottom-area",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
           href: "#",
           "class": "card-link",
           children: props.price
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
           href: "#",
-          className: "btn btn-primary",
+          className: "btn btn-warning",
           children: "More"
         })]
       })]
@@ -5885,28 +5890,55 @@ function ScanButton() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Seach)
+/* harmony export */   "default": () => (/* binding */ Search)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _Search_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Search.css */ "./resources/js/components/search-bar/Search.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-function Seach() {
+
+
+function Search(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      search = _useState2[0],
+      setSearch = _useState2[1];
+
+  function handleChange(e) {
+    setSearch(e.target.value);
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "search-bar",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "search-box",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
         type: "text",
+        onChange: handleChange,
         className: "search-input",
         placeholder: "Search"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       className: "btn-cta-freequote search-btn",
-      href: "#",
+      to: "/",
+      onClick: function onClick() {
+        return props.SearchRequest(search);
+      },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
         className: "fa fa-search"
       })
@@ -5933,6 +5965,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_search_bar_Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/search-bar/Search */ "./resources/js/components/search-bar/Search.js");
 /* harmony import */ var _components_scan_button_ScanButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/scan-button/ScanButton */ "./resources/js/components/scan-button/ScanButton.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -5941,9 +5985,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Home(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      search = _useState2[0],
+      setSearch = _useState2[1];
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_navbar_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_search_bar_Search__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_scan_button_ScanButton__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_main_Main__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      codeB: props.codeB
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_navbar_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_search_bar_Search__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      SearchRequest: function SearchRequest(input) {
+        return setSearch(input);
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_scan_button_ScanButton__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_main_Main__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      codeB: props.codeB,
+      searchR: search
     })]
   });
 }
@@ -11068,7 +11122,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n*{\n    box-sizing: border-box;\n    margin:0;\n    padding:0;\n    outline: none;\n}\nbody{\n    margin:0;\n}\n\nul {\n    list-style:none;\n    padding:0;\n    margin:0;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n*{\r\n    box-sizing: border-box;\r\n    margin:0;\r\n    padding:0;\r\n    outline: none;\r\n}\r\nbody{\r\n    margin:0;\r\n}\r\n\r\nul {\r\n    list-style:none;\r\n    padding:0;\r\n    margin:0;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11092,7 +11146,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".cards{\n    padding: 2rem 1rem 1rem;\n    display: flex;\n}\n@media screen and (max-width: 644px){\n    .cards{\n        flex-wrap: wrap;\n    }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".cards{\r\n    padding: 1rem 1rem 1rem;\r\n    display: flex;\r\n}\r\nh1.product-title{\r\n    padding: 0 1rem ;\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-weight: 450;\r\n}\r\n@media screen and (max-width: 644px){\r\n    .cards{\r\n        flex-wrap: wrap;\r\n    }\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11116,7 +11170,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".bottom-area{\n    display: flex;\n    justify-content: flex-start;\n    margin-top:50px;\n}\n.card{\n    width: 220px;\n    height: 180px;\n    margin-bottom: 0.5rem;\n}\na {\n    margin : 0 0.5rem;\n}\na.card-link{\n    padding: 6px 12px;\n}\n.card-title{\n    padding: 0.8rem;\n}\n\n@media screen and (max-width: 473px){\n    .card{\n        width: 100vw;\n    }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".bottom-area{\r\n    display: flex;\r\n    justify-content: space-around;\r\n    margin-top:20px;\r\n    align-items: center;\r\n}\r\n.card{\r\n    width: 220px;\r\n    height: 180px;\r\n    margin: 0.5rem 0.3rem;\r\n    border-radius: 15px;\r\n}\r\n.card-body{\r\n   padding: 16px\r\n}\r\na {\r\n    margin : 0 0.5rem;\r\n}\r\nh5.card-link{\r\n    margin: 0;\r\n    padding: 0.6rem 1.2rem;\r\n}\r\nh3.card-title{\r\n    padding: 0.8rem;\r\n    margin-top:7px;\r\n    margin-bottom: 0;\r\n    font-family: 'Mukta', sans-serif;\r\n}\r\n\r\n@media screen and (max-width: 473px){\r\n    .card{\r\n        padding-right: 2rem;\r\n        width: 100vw;\r\n    }\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11140,7 +11194,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.navbar{\n    display: flex;\n    flex-wrap:wrap;\n    align-items: center;\n    justify-content: space-between;\n    position: fixed;\n    width: 100%;\n    padding: 1rem;\n    background-color: #444;\n    color : #fff;\n    z-index: 1000;\n}\n.navbar__links {\n    display: flex;\n}\n.navbar__link {\n    padding: 0 0.3rem;\n    color:inherit;\n    text-decoration : none;\n}\n.navbar__burger {\n    width: 30px;\n    height: 30px;\n    background-color: transparent;\n    border: none;\n    color:inherit;\n    display: block;\n}\n@media screen and (max-width: 768px){\n    .navbar__links{\n        flex-direction: column;\n        justify-content: center;\n        position: fixed;\n        align-items: center;\n        right:-100vw;\n        bottom: 0;\n        height: 100vh;\n        padding: 2rem;\n        background-color: #000;\n    }\n    .show-nav .navbar__links{\n        width: 100vw;\n        right:0;\n\n    } \n    .navbar__link{\n        display: block;\n        padding: 1.5rem;\n        font-size: 5vw;\n    }\n    .navbar__burger{\n        display: block;\n        position: fixed;\n        right:1.1rem ;\n        top: 0.8rem;\n\n    }\n    .navbar__burger:hover{\n        cursor: pointer;\n    }\n    .burger-bar,\n    .burger-bar::after,\n    .burger-bar::before {\n        display: block;\n        width: 30px;\n        height: 3px;\n        position: relative;\n        border-radius: 10px;\n        background: #fff;\n    }\n    \n    .burger-bar::after,\n    .burger-bar::before {\n       content: \"\";\n       position: absolute;\n       left:0;\n    }\n    .burger-bar::before {\n       transform: translateY(-10px);\n    }\n    .burger-bar::after {\n        transform: translateY(10px);\n    }\n    .show-nav .burger-bar::before {\n        transform: rotate(45deg);\n    }\n    .show-nav .burger-bar::after {\n        transform: rotate(-45deg);\n    }\n    .show-nav .burger-bar{\n        background: transparent;\n    }\n  \n    \n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n.navbar{\r\n    display: flex;\r\n    flex-wrap:wrap;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    position: fixed;\r\n    width: 100%;\r\n    padding: 1rem;\r\n    background-color: #444;\r\n    color : #fff;\r\n    z-index: 1000;\r\n}\r\n.navbar__links {\r\n    display: flex;\r\n}\r\n.navbar__link {\r\n    padding: 0 0.3rem;\r\n    color:inherit;\r\n    text-decoration : none;\r\n}\r\n.navbar__burger {\r\n    width: 30px;\r\n    height: 30px;\r\n    background-color: transparent;\r\n    border: none;\r\n    color:inherit;\r\n    display: block;\r\n}\r\n@media screen and (max-width: 768px){\r\n    .navbar__links{\r\n        flex-direction: column;\r\n        justify-content: center;\r\n        position: fixed;\r\n        align-items: center;\r\n        right:-100vw;\r\n        bottom: 0;\r\n        height: 100vh;\r\n        padding: 2rem;\r\n        background-color: #000;\r\n    }\r\n    .show-nav .navbar__links{\r\n        width: 100vw;\r\n        right:0;\r\n\r\n    } \r\n    .navbar__link{\r\n        display: block;\r\n        padding: 1.5rem;\r\n        font-size: 5vw;\r\n    }\r\n    .navbar__burger{\r\n        display: block;\r\n        position: fixed;\r\n        right:1.1rem ;\r\n        top: 0.8rem;\r\n\r\n    }\r\n    .navbar__burger:hover{\r\n        cursor: pointer;\r\n    }\r\n    .burger-bar,\r\n    .burger-bar::after,\r\n    .burger-bar::before {\r\n        display: block;\r\n        width: 30px;\r\n        height: 3px;\r\n        position: relative;\r\n        border-radius: 10px;\r\n        background: #fff;\r\n    }\r\n    \r\n    .burger-bar::after,\r\n    .burger-bar::before {\r\n       content: \"\";\r\n       position: absolute;\r\n       left:0;\r\n    }\r\n    .burger-bar::before {\r\n       transform: translateY(-10px);\r\n    }\r\n    .burger-bar::after {\r\n        transform: translateY(10px);\r\n    }\r\n    .show-nav .burger-bar::before {\r\n        transform: rotate(45deg);\r\n    }\r\n    .show-nav .burger-bar::after {\r\n        transform: rotate(-45deg);\r\n    }\r\n    .show-nav .burger-bar{\r\n        background: transparent;\r\n    }\r\n  \r\n    \r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11164,7 +11218,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".scan-btn{\n   position: fixed;\n   bottom:0;\n   right: 0;\n   z-index: 999;\n   margin-bottom: 1rem;\n   margin-right: 0.8rem;\n  \n}\n.scan-btn a{\n    border-radius: 48%;\n    padding: 18px;\n}\n\n.add-btn,\n.add-btn::after{\n    display: block;\n    width: 24px;\n    height: 5px;\n    position: relative;\n    background: #fff;\n    border-radius: 5px;\n}\n.add-btn::after{\n       content: \"\";\n       position: absolute;\n    }\n.add-btn::after{\n    transform:  rotate(90deg);\n    \n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".scan-btn{\r\n   position: fixed;\r\n   bottom:0;\r\n   right: 0;\r\n   z-index: 999;\r\n   margin-bottom: 1rem;\r\n   margin-right: 0.8rem;\r\n  \r\n}\r\n.scan-btn a{\r\n    border-radius: 48%;\r\n    padding: 18px;\r\n}\r\n\r\n.add-btn,\r\n.add-btn::after{\r\n    display: block;\r\n    width: 24px;\r\n    height: 5px;\r\n    position: relative;\r\n    background: #fff;\r\n    border-radius: 5px;\r\n}\r\n.add-btn::after{\r\n       content: \"\";\r\n       position: absolute;\r\n    }\r\n.add-btn::after{\r\n    transform:  rotate(90deg);\r\n    \r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11188,7 +11242,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".scan-form {\n    display: flex;\n    flex-direction: column;\n    height: 100vh;\n    width: 100vw;\n    justify-content: center;\n    align-items: center;\n    margin: auto;\n}\n.scan-page {\n    background: #dddddd;\n}\n.scan-input {\n    align-items: center;\n    text-align: center;\n    margin-bottom: 1rem;\n    width: 250px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".scan-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    height: 100vh;\r\n    width: 100vw;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin: auto;\r\n}\r\n.scan-page {\r\n    background: #dddddd;\r\n}\r\n.scan-input {\r\n    align-items: center;\r\n    text-align: center;\r\n    margin-bottom: 1rem;\r\n    width: 250px;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11212,7 +11266,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".search-bar{\n    margin-top: 1.5rem ;\n    display: flex;\n    justify-content: center;\n    padding-left: 25px;\n}\n.search-input{\n    width: 70vw;\n    height: 30px;\n    border-radius: 15px;\n    align-items: center;\n    text-align: center;\n    border: 2px solid #666666;    \n  \n}\n.search-input:focus{\n    transform: translateY(-2.5px);\n    height: 32px;\n    width: 80vw;\n}\n.search-bar i{\n    color: #666666;\n    \n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".search-bar{\r\n    margin-top: 1.5rem ;\r\n    display: flex;\r\n    justify-content: center;\r\n    padding-left: 2rem;\r\n}\r\n.search-input{\r\n    width: 70vw;\r\n    height: 30px;\r\n    margin-bottom: 1.5rem;\r\n    border-radius: 15px;\r\n    align-items: center;\r\n    text-align: center;\r\n    border: 2px solid #666666;    \r\n  \r\n}\r\ni.fa-search{\r\n    margin: 0;\r\n    padding:0.5rem 0.3rem;\r\n}\r\n.search-bar i{\r\n    color: #666666;\r\n    \r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

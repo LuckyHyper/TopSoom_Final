@@ -1,6 +1,11 @@
 .cards{
-    padding: 2rem 1rem 1rem;
+    padding: 1rem 1rem 1rem;
     display: flex;
+}
+h1.product-title{
+    padding: 0 1rem ;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 450;
 }
 @media screen and (max-width: 644px){
     .cards{

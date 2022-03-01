@@ -30,6 +30,7 @@ class PriceController extends Controller
     {
         $price = Price::create([
             'product_id' => $request->product_id,
+            'product_name' => $request->product_name,
             'market_id' => $request->market_id,
             'price' => $request->price
          ]);

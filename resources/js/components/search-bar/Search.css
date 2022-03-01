@@ -2,21 +2,21 @@
     margin-top: 1.5rem ;
     display: flex;
     justify-content: center;
-    padding-left: 25px;
+    padding-left: 2rem;
 }
 .search-input{
     width: 70vw;
     height: 30px;
+    margin-bottom: 1.5rem;
     border-radius: 15px;
     align-items: center;
     text-align: center;
     border: 2px solid #666666;    
   
 }
-.search-input:focus{
-    transform: translateY(-2.5px);
-    height: 32px;
-    width: 80vw;
+i.fa-search{
+    margin: 0;
+    padding:0.5rem 0.3rem;
 }
 .search-bar i{
     color: #666666;

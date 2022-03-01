@@ -10,6 +10,7 @@ class Price extends Model
     use HasFactory;
     protected $fillable= [
         'product_id',
+        'product_name',
         'market_id',
         'price'
     ];

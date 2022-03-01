@@ -16,6 +16,7 @@ class PriceResource extends JsonResource
     {
         return [
             'product_id' => $this->product_id,
+            'product_name' => $this->product_name,
             'market_id' => $this->market_id,
             'price' => $this->price,
             'created_at' => $this->created_at,
