@@ -5,15 +5,15 @@ import Search from "../components/search-bar/Search";
 import ScanButton from "../components/scan-button/ScanButton";
 
 export default function Home(props) {
-
-    const[search, setSearch]= useState();
+    const [search, setSearch] = useState();
 
     return (
         <div>
             <Nav />
-            <Search SearchRequest={input => setSearch(input)}/>
+            <h1>hello</h1>
+            <Search SearchRequest={(input) => setSearch(input)} />
             <ScanButton />
-            <Main codeB={props.codeB} searchR={search}/>
+            <Main codeB={props.codeB} searchR={search} />
         </div>
     );
 }
