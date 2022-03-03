@@ -16,8 +16,8 @@ class PriceController extends Controller
      */
     public function index()
     {
-        $data = Price::latest()->get();
-        return response()->json([PriceResource::collection($data), 'Price fetched.']);
+        
+        return Price::all();
     }
 
     /**
@@ -30,12 +30,11 @@ class PriceController extends Controller
     {
         $price = Price::create([
             'product_id' => $request->product_id,
-            'product_name' => $request->product_name,
             'market_id' => $request->market_id,
             'price' => $request->price
          ]);
         
-        return response()->json(['Price created successfully.', new PriceResource($price)]);
+        return response()->json( new PriceResource($price));
     }
 
     /**
@@ -46,11 +45,11 @@ class PriceController extends Controller
      */
     public function show($id)
     {
-        $price = Price::find($id);
-        if (is_null($price)) {
+        $program = Price::where('product_id',$id)->get();
+        if (is_null($program)) {
             return response()->json('Data not found', 404); 
         }
-        return response()->json([new PriceResource($price)]);
+        return response()->json(PriceResource::collection($program));
     }
 
     /**
@@ -59,9 +58,11 @@ class PriceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Price $price)
+    public function destroy($id)
     {
+        $price= Price::find($id);
         $price->delete();
+
         return response()->json('Price deleted successfully');
     }
 }
