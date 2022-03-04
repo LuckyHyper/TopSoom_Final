@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import Button from "./button/button";
-import axios from "axios";
-import Card from "./card/card";
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
 
 export default function Scan(props) {
     const [text, setText] = useState("");
-    // const [data, setdata] = useState(null);
 
     return (
         <div>
@@ -36,9 +32,6 @@ export default function Scan(props) {
             >
                 Show product
             </Link>
-            {/* {data != null && (
-                <Card productName={data.market_id} price={data.price} />
-            )} */}
         </div>
     );
 }

@@ -3,7 +3,6 @@ import Card from "../card/card";
 
 import Navbar from "../navbar";
 import Search from "../searchBar/Search";
-import "./ProductDetails.css";
 import styled from "styled-components";
 
 const ProductContainer = styled.div`

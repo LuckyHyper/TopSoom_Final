@@ -8,11 +8,11 @@ import ProductDetails from "./components/productDetails/productDetails";
 
 function App() {
     const [data, setdata] = useState(null);
-    const [text, setText] = useState("");
-
+    const [barcode, setBarcode] = useState("");
+    
     const showProduct = async () => {
         return await axios
-            .get(`http://127.0.0.1:8000/api/price/${text}`)
+            .get(`http://127.0.0.1:8000/api/price?barcode=${barcode}`)
 
             .then((res) => {
                 setdata(res.data);
@@ -25,11 +25,11 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<Home data={data} />} />
+                    <Route exact path="/" element={<Home data={data} setdata={setdata} />} />
                     <Route
                         path="/scan"
                         element={
-                            <Scan showProduct={showProduct} setText={setText} />
+                            <Scan showProduct={showProduct} setText={setBarcode} />
                         }
                     />
                     <Route
