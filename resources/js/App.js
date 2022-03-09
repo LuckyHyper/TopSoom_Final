@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Scan from "./components/scanner";
 import ProductDetails from "./components/productDetails/productDetails";
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
 
 function App() {
     const [data, setdata] = useState(null);
@@ -26,6 +28,8 @@ function App() {
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Home data={data} setdata={setdata} />} />
+                    <Route exact path="/register" element={<Register />} />
+                    <Route exact path="/login" element={<Login />} />
                     <Route
                         path="/scan"
                         element={
