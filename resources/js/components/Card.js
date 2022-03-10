@@ -6,9 +6,10 @@ import {
     Image,
     Text,
     Link,
-    Button,
     Stack,
 } from "@chakra-ui/react";
+import Button from "./Button";
+
 function Card(props) {
     const { productName, image, price } = props;
 
@@ -54,14 +55,7 @@ function Card(props) {
                     {price}
                 </Link>
 
-                <Button
-                    maxWidth="100px"
-                    my={2}
-                    color="#0BC5EA
-                    "
-                >
-                    View details
-                </Button>
+                <Button routing title="view details" path={"/productDetails"} />
             </Stack>
         </Box>
     );

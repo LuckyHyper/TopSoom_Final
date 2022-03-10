@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../css/app.css";
-import Card from "./card/card";
-import Navbar from "./navbar";
-import Button from "./button/button";
-import axios from "axios";
-import Search from "./searchBar/Search";
-import ScanButton from "./scanButton/ScanButton";
+import Card from "./Card";
+import Navbar from "./Navbar/Navbar";
 
-export default function Home(props) {
+import Search from "./SearchBar/Search";
+import ScanButton from "./ScanButton/ScanButton";
+
+export default function PriceList(props) {
     const [data, setdata] = useState([]);
 
     // useEffect(() => {

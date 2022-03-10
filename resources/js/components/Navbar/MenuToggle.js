@@ -1,12 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
-
-const Button = styled.div`
-    z-index: 99;
-    cursor: pointer;
-    margin-right: 10px;
-`;
+import "./Navbar.css";
 
 const Path = (props) => (
     <motion.path
@@ -21,7 +16,7 @@ const transition = { duration: 0.33 };
 
 export function MenuToggle({ toggle, isOpen }) {
     return (
-        <Button onClick={toggle}>
+        <div className="Button" onClick={toggle}>
             <svg width="23" height="23" viewBox="0 0 23 23">
                 <Path
                     animate={isOpen ? "open" : "closed"}
@@ -65,6 +60,6 @@ export function MenuToggle({ toggle, isOpen }) {
                     transition={transition}
                 />
             </svg>
-        </Button>
+        </div>
     );
 }

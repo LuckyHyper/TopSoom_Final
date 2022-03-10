@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import Button from "./button/button";
-import axios from "axios";
-import Card from "./card/card";
-import Navbar from "./navbar";
-import { Link } from "react-router-dom";
+import Button from "./Button";
+import Navbar from "./Navbar/Navbar";
 
 export default function Scan(props) {
     const [text, setText] = useState("");
-    // const [data, setdata] = useState(null);
 
     return (
         <div>
@@ -28,17 +24,12 @@ export default function Scan(props) {
                 />
             </div>{" "}
             <br />
-            <Link
-                to="/"
-                className="chakra-button"
+            <Button
+                routing
+                title="Show product"
+                path={"/"}
                 onClick={props.showProduct}
-                title="show product"
-            >
-                Show product
-            </Link>
-            {/* {data != null && (
-                <Card productName={data.market_id} price={data.price} />
-            )} */}
+            />
         </div>
     );
 }
