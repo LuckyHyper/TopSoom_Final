@@ -6,7 +6,9 @@ import "./Navbar.css";
 export default function SignIn(props) {
     return (
         <div className="SignInContainer">
-            <button className="RegisterButton">Register</button>
+            <Link to="/register">
+                <button className="RegisterButton">Register</button>
+            </Link>
             <Link to="/login">
                 {" "}
                 <button className="LoginButton">Login</button>

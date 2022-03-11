@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./components/Home";
+import PriceList from "./components/PriceList";
 import Scan from "./components/scanner";
-import ProductDetails from "./components/productDetails/productDetails";
+import Login from './components/Login';
+import Register from './components/Register';
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+import axios from "axios";
+
+axios.defaults.baseURL="http://localhost:8000";
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.withCredentials=true;
 
 function App() {
     const [data, setdata] = useState(null);
@@ -25,7 +33,9 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<Home data={data} />} />
+                    <Route exact path="/" element={<PriceList data={data} />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/Register" element={<Register />} />
                     <Route
                         path="/scan"
                         element={

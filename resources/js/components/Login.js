@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
     Flex,
     Heading,
@@ -17,15 +17,27 @@ import {
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import Navbar from "./Navbar/Navbar";
+import axios from "axios";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-const Login = () => {
+function Login() {
     const [showPassword, setShowPassword] = useState(false);
-
+    const [login, setLogin] = useState({
+        email: '',
+        password: ''
+    })
     const handleShowClick = () => setShowPassword(!showPassword);
+    const handleChange= (e) => {
+        setLogin({...login, [e.target.name] : e.target.value});
+    }
+    const loginSubmit = (e) => {
+        e.preventDefault();
+        axios.post('/api/login').then(res => {
 
+        });
+    }
     return (
         <div>
             <Navbar />
@@ -47,7 +59,7 @@ const Login = () => {
                         <Avatar bg="teal.500" />
                         <Heading color="teal.400">Welcome</Heading>
                         <Box minW={{ base: "90%", md: "468px" }}>
-                            <form>
+                            <form onSubmit={loginSubmit}>
                                 <Stack
                                     spacing={4}
                                     p="1rem"
@@ -65,6 +77,9 @@ const Login = () => {
                                             <Input
                                                 type="email"
                                                 placeholder="email address"
+                                                name="email"
+                                                value={login.email}
+                                                onChange={handleChange}
                                             />
                                         </InputGroup>
                                     </FormControl>
@@ -84,6 +99,9 @@ const Login = () => {
                                                         : "password"
                                                 }
                                                 placeholder="Password"
+                                                name="password"
+                                                value={login.password}
+                                                onChange={handleChange}
                                             />
                                             <InputRightElement width="4.5rem">
                                                 <Button
