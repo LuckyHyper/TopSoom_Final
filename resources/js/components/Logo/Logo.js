@@ -28,7 +28,7 @@ import "./Logo";
 export function Logo() {
     return (
         <div className="LogoWrapper">
-            <h2 className="LogoText">ToPrice</h2>
+            <h2 className="LogoText">TopSoom</h2>
         </div>
     );
 }

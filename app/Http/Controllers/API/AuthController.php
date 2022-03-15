@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class Authcontroller extends Controller
 {
@@ -75,6 +76,16 @@ class Authcontroller extends Controller
 
         }
 
+    }
+    public function logout()
+    {
+        auth()->user()->tokens->each(function($token) {
+            $token->delete();
+        });
+        return response()->json([
+            'status'=>200,
+            'message'=>'Logged Out Successfully',
+        ]);
     }
 }
 
