@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import axios from "axios";
@@ -11,7 +10,7 @@ function SignIn(props) {
     var AuthButtons = "";
    
     const submitLogout = () => {
-        
+        console.log("testttttt")
         axios.post('/api/logout').then((res) => {
             if (res.data.status === 200) {
                 console.log("testttttt")
