@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "./navbar";
-import { Link } from "react-router-dom";
+import Button from "./Button";
+import Navbar from "./Navbar/Navbar";
 
 export default function Scan(props) {
     const [text, setText] = useState("");
@@ -10,11 +10,6 @@ export default function Scan(props) {
             <Navbar />
             <br />
             <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="basic-addon1">
-                        @
-                    </span>
-                </div>
                 <input
                     onChange={(e) => props.setText(e.target.value)}
                     type="text"
@@ -24,14 +19,12 @@ export default function Scan(props) {
                 />
             </div>{" "}
             <br />
-            <Link
-                to="/"
-                className="chakra-button"
+            <Button
+                routing
+                title="Show product"
+                path={"/"}
                 onClick={props.showProduct}
-                title="show product"
-            >
-                Show product
-            </Link>
+            />
         </div>
     );
 }
