@@ -3,40 +3,6 @@ import Navbar from "../Navbar/Navbar";
 import Search from "../SearchBar/Search";
 import "./ProductDetails";
 
-// const ProductContainer = styled.div`
-//     height: 60px;
-// `;
-// const Wrapper = styled.div`
-//     padding: 50px;
-//     display: flex;
-//     ${Mobile({ padding: "10px", flexDirection: "column" })}
-// `;
-// const ImgContainer = styled.div`
-//     flex: 1;
-// `;
-// const Image = styled.img`
-//     width: 90%;
-//     height: 90vh;
-//     object-fit: cover;
-// `;
-// const InfoContainer = styled.div`
-//     flex: 1;
-//     padding: 0px 50px;
-// `;
-// const Title = styled.h1`
-//     font-weight: 200;
-//     font-size: 50px;
-//     font-family: cursive;
-// `;
-// const Price = styled.span`
-//     font-weight: 100;
-//     font-family: Georgia, serif;
-// `;
-// const Descr = styled.span`
-//     font-weight: 100;
-//     font-family: Georgia, serif;
-// `;
-
 export default function ProductDetails({ data }) {
     console.log(data);
     return (

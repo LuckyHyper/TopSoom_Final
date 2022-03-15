@@ -21,11 +21,13 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
 import Navbar from "./Navbar/Navbar";
 import swal from "sweetalert";
+import { useNavigate } from 'react-router-dom';
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 function Register() {
+    const navigate = useNavigate();
     const [register, setRegister] = useState({
         name: "",
         email: "",
@@ -44,6 +46,7 @@ function Register() {
                      localStorage.setItem("auth_token", res.data.token);
                      localStorage.setItem("auth_name", res.data.username);
                     swal("Success", res.data.message, "success");
+                    navigate('/');
                 } else {
                     setRegister({
                         ...register,

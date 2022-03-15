@@ -9,13 +9,6 @@ import ScanButton from "./ScanButton/ScanButton";
 export default function PriceList(props) {
     const [data, setdata] = useState([]);
 
-    // useEffect(() => {
-    //     axios
-    //         .get("http://127.0.0.1:8000/api/price")
-    //         .then((res) => setdata(res.data))
-    //         .catch((err) => console.log(err));
-    // }, []);
-
     return (
         <div>
             <Navbar />
@@ -36,7 +29,6 @@ export default function PriceList(props) {
             </div>
 
             <div style={{ marginBottom: 15 }}>
-                {/* <Button routing title="scan product" path={"/scan"}></Button> */}
                 <ScanButton></ScanButton>
             </div>
         </div>
