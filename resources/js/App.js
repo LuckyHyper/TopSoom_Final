@@ -7,6 +7,7 @@ import Scan from "./components/scanner";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import Admin from './components/Admin';
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8000";
@@ -21,15 +22,15 @@ axios.interceptors.request.use(function (config) {
 });
 
 function App() {
-    const [data, setdata] = useState(null);
+    const [data, setData] = useState(null);
     const [text, setText] = useState("");
 
     const showProduct = async () => {
         return await axios
-            .get(`http://127.0.0.1:8000/api/price/${text}`)
+            .get(`http://127.0.0.1:8000/api/price?barcode=${text}`)
 
             .then((res) => {
-                setdata(res.data);
+                setData(res.data);
             })
 
             .catch((err) => console.log(err));
@@ -39,7 +40,7 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<PriceList data={data} />} />
+                    <Route exact path="/" element={<PriceList data={data} setData={setData} />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route
@@ -52,6 +53,7 @@ function App() {
                         path="/productDetails"
                         element={<ProductDetails />}
                     />
+                    <Route path="/admin" element={<Admin />} />
                 </Routes>
             </Router>
         </ChakraProvider>

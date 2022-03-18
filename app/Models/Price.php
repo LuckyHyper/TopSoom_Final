@@ -10,10 +10,10 @@ class Price extends Model
     use HasFactory;
     protected $fillable= [
         'product_id',
+        'barcode',
         'product_name',
-        'market_id',
+        'shop_name',
         'price'
     ];
     protected $primaryKey='product_id';
-    public $incrementing=false;
 }

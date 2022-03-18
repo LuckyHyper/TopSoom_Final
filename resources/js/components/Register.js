@@ -34,7 +34,6 @@ function Register() {
         password: "",
         error_list: [],
     });
-    const test = () => {};
     const handleChange = (e) => {
         setRegister({ ...register, [e.target.name]: e.target.value });
     };

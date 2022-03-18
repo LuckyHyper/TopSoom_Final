@@ -11,7 +11,7 @@ import {
 import Button from "./Button";
 
 function Card(props) {
-    const { productName, image, price } = props;
+    const { shopName , image, price } = props;
 
     return (
         <Box
@@ -35,15 +35,16 @@ function Card(props) {
                 mt={{ base: 4, md: 0 }}
                 ml={{ md: 6 }}
             >
-                <Text
+                 <Text
                     fontWeight="bold"
                     textTransform="uppercase"
                     fontSize="lg"
                     letterSpacing="wide"
                     color="teal.600"
                 >
-                    {productName}
+                    {shopName}
                 </Text>
+                
                 <Link
                     my={1}
                     display="block"
