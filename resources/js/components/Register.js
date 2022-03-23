@@ -39,6 +39,7 @@ function Register() {
     };
     const registerSubmit = (e) => {
         e.preventDefault();
+        console.log(register);
         axios.get("/sanctum/csrf-cookie").then((response) => {
             axios.post(`/api/register`, register).then((res) => {
                 if (res.data.status === 200) {

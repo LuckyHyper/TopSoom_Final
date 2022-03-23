@@ -9,6 +9,7 @@ import {
     Stack,
 } from "@chakra-ui/react";
 import Button from "./Button";
+import ProductDetails from "./ProductDetails/ProductDetails";
 
 function Card(props) {
     const { shopName , image, price } = props;
@@ -56,7 +57,7 @@ function Card(props) {
                     {price}
                 </Link>
 
-                <Button routing title="view details" path={"/productDetails"} />
+                <Button routing title="view details" path={"/ProductDetails"} />
             </Stack>
         </Box>
     );

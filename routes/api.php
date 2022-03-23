@@ -16,5 +16,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
 });
 
-
-Route::get('admin',[AdminController::class,'index']);
+Route::post('admin',[AdminController::class,'insertCSV']);

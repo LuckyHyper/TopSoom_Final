@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('product_id');
-            $table->string('barcode')->nullable();
-            $table->string('product_name')->nullable();
-            $table->string('shop_name')->nullable();
+            $table->string('barcode');
+            $table->string('product_name');
+            $table->string('shop_name');
             $table->string('price');
             $table->timestamps();
         });

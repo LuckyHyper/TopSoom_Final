@@ -1,81 +1,63 @@
 import React, { useState } from "react";
-import {
-    Flex,
-    Heading,
-    Input,
-    Button,
-    InputGroup,
-    Stack,
-    InputLeftElement,
-    Box,
-    Avatar,
-    FormControl,
-    FormLabel,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Button, Input, Stack } from "@chakra-ui/react";
 import axios from "axios";
 
 function Admin() {
-    const [file, setFile] = useState();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('/api/admin',file).then((res) => {
-
+    const [csvFile, setCsvFile] = useState();
+    const processCSV = (str, delim = ",") => {
+        let data = str.split("\n");
+        data.shift();
+        let data1 = data.map((d) => {
+            let row = d.split(",");
+            let object = { barcode: row[0], product_name: row[1], shop_name: row[2], price: row[3] };
+            return object;
         });
-    }
+        data1.pop();
+        console.log({prices: data1});
+        return {prices: data1};
+    };
 
+    const submit = () => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const text = e.target.result;
+            const FileStructered = processCSV(text);
+            console.log(FileStructered);
+            axios.post("/api/admin", FileStructered).then((res) => {
+                if (res.data.status === 200) {
+                    console.log("work work");
+                }
+            });
+        };
+
+        reader.readAsText(csvFile);
+    };
     return (
-        <Flex
-            flexDirection="column"
-            width="100wh"
-            height="100vh"
-            backgroundColor="gray.200"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Stack
-                flexDir="column"
-                mb="3"
-                justifyContent="center"
-                alignItems="center"
-            >
-                <Avatar bg="teal.500" />
-                <Heading color="teal.400">Welcome</Heading>
-                <Box minW={{ base: "90%", md: "468px" }}>
-                    <form>
-                        <Stack
-                            spacing={4}
-                            p="1rem"
-                            backgroundColor="whiteAlpha.900"
-                            boxShadow="md"
-                        >
-                            <FormControl>
-                                <InputGroup>
-                                    <InputLeftElement pointerEvents="none" />
-                                    <FormLabel>Select file</FormLabel>
-                                    <Input
-                                        type="file"
-                                        name="file"
-                                        onChange={(e) =>  setFile(e.target.files[0])}
-                                    />
-                                </InputGroup>
-                            </FormControl>
-
-                            <Button
-                                borderRadius={6}
-                                type="submit"
-                                variant="solid"
-                                colorScheme="teal"
-                                width="full"
-                                onClick={(e)=> handleSubmit(e)}
-                            >
-                                Upload
-                            </Button>
-                        </Stack>
-                    </form>
-                </Box>
+        <div>
+            <Stack justifyContent="center" alignItems="center">
+                <FormControl>
+                    <FormLabel>CSV File</FormLabel>
+                    <Input
+                        id="csvFile"
+                        type="file"
+                        accept=".csv"
+                        onChange={(e) => {
+                            setCsvFile(e.target.files[0]);
+                        }}
+                    />{" "}
+                    <br></br>
+                    <br></br>
+                    <Button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            if (csvFile) submit();
+                        }}
+                    >
+                        Submit
+                    </Button>
+                </FormControl>
             </Stack>
-        </Flex>
+        </div>
     );
 }
 

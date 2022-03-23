@@ -17,7 +17,7 @@ class PriceController extends Controller
     public function index(Request $request)
     { 
         if(!empty($request->barcode)){
-            $price= price::where('barcode',$request->barcode)->get();
+            $price= Price::where('barcode',$request->barcode)->get();
         }
         elseif(!empty($request->product_name)){
             $price= Price::where('product_name',$request->product_name)->get();

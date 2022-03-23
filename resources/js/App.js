@@ -43,6 +43,7 @@ function App() {
                     <Route exact path="/" element={<PriceList data={data} setData={setData} />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
+                    <Route path="/admin" element={<Admin />} />
                     <Route
                         path="/scan"
                         element={
@@ -50,10 +51,9 @@ function App() {
                         }
                     />
                     <Route
-                        path="/productDetails"
+                        path="/ProductDetails"
                         element={<ProductDetails />}
                     />
-                    <Route path="/admin" element={<Admin />} />
                 </Routes>
             </Router>
         </ChakraProvider>
