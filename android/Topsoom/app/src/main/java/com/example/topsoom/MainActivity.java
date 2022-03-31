@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         });
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setDomStorageEnabled(true);
-
-        myWebView.loadUrl("https://serratus.github.io/quaggaJS/examples/live_w_locator.html");
+        myWebView.getSettings().setAllowFileAccessFromFileURLs(true);
+        myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+        myWebView.loadUrl("file:///android_asset/index.html");
     }
 }
