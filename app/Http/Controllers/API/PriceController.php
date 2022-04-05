@@ -14,42 +14,33 @@ class PriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
-        return Price::all();
+    public function index(Request $request)
+    { 
+        if(!empty($request->barcode)){
+            $price= Price::where('barcode',$request->barcode)->get();
+        }
+        elseif(!empty($request->product_name)){
+            $price= Price::where('product_name',$request->product_name)->get();
+            }else{
+                $price= Price::all();
+            }
+
+        if (is_null($price)) {
+            return response()->json('Data not found', 404); 
+        }
+        return response()->json(PriceResource::collection($price));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $price = Price::create([
-            'product_id' => $request->product_id,
-            'market_id' => $request->market_id,
+            'barcode' => $request->barcode,
+            'product_name' => $request->product_name,
+            'shop_name' => $request->shop_name,
             'price' => $request->price
          ]);
         
         return response()->json( new PriceResource($price));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $program = Price::where('product_id',$id)->get();
-        if (is_null($program)) {
-            return response()->json('Data not found', 404); 
-        }
-        return response()->json(PriceResource::collection($program));
     }
 
     /**

@@ -1,17 +1,9 @@
 import React from "react";
-import {
-    Box,
-    Flex,
-    AspectRatio,
-    Image,
-    Text,
-    Link,
-    Stack,
-} from "@chakra-ui/react";
+import { Box, Image, Text, Link, Stack } from "@chakra-ui/react";
 import Button from "./Button";
 
 function Card(props) {
-    const { productName, image, price } = props;
+    const { shopName, image, price } = props;
 
     return (
         <Box
@@ -42,8 +34,9 @@ function Card(props) {
                     letterSpacing="wide"
                     color="teal.600"
                 >
-                    {productName}
+                    {shopName}
                 </Text>
+
                 <Link
                     my={1}
                     display="block"
@@ -55,7 +48,7 @@ function Card(props) {
                     {price}
                 </Link>
 
-                <Button routing title="view details" path={"/productDetails"} />
+                <Button routing title="view details" path={"/ProductDetails"} />
             </Stack>
         </Box>
     );

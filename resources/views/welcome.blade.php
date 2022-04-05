@@ -15,5 +15,6 @@
     <body>
         <div id="root"></div>
         <script  src="./js/Index.js"></script>
+		<script src="./js/quagga.js"></script>
     </body>
 </html>

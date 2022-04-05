@@ -21,7 +21,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
 import Navbar from "./Navbar/Navbar";
 import swal from "sweetalert";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -34,19 +34,19 @@ function Register() {
         password: "",
         error_list: [],
     });
-    const test = () => {};
     const handleChange = (e) => {
         setRegister({ ...register, [e.target.name]: e.target.value });
     };
     const registerSubmit = (e) => {
         e.preventDefault();
+        console.log(register);
         axios.get("/sanctum/csrf-cookie").then((response) => {
             axios.post(`/api/register`, register).then((res) => {
                 if (res.data.status === 200) {
-                     localStorage.setItem("auth_token", res.data.token);
-                     localStorage.setItem("auth_name", res.data.username);
+                    localStorage.setItem("auth_token", res.data.token);
+                    localStorage.setItem("auth_name", res.data.username);
                     swal("Success", res.data.message, "success");
-                    navigate('/');
+                    navigate("/");
                 } else {
                     setRegister({
                         ...register,
@@ -185,10 +185,11 @@ function Register() {
                                             variant="solid"
                                             colorScheme="teal"
                                             width="full"
-                                            
-                                            _hover={{ bgColor:"#ff9900" }}
+                                            _hover={{ bgColor: "#ff9900" }}
                                         >
-                                           <Text textDecorationLine="none">Back</Text> 
+                                            <Text textDecorationLine="none">
+                                                Back
+                                            </Text>
                                         </Button>
                                     </Link>
                                 </Stack>

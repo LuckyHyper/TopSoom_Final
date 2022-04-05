@@ -5,23 +5,35 @@ import Navbar from "./Navbar/Navbar";
 
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
+import axios from "axios";
 
 export default function PriceList(props) {
-    const [data, setdata] = useState([]);
+    const [search, setSearch] = useState([]);
+    const ProductsByName = async () => {
+        console.log("test");
+        console.log(props.data);
+        return await axios
+            .get(`http://127.0.0.1:8000/api/price?product_name=${search}`)
+
+            .then((res) => {
+                props.setData(res.data);
+            })
+
+            .catch((err) => console.log(err));
+    };
 
     return (
         <div>
             <Navbar />
-            <Search />
+            <Search setSearch={setSearch} ProductsByName={ProductsByName} />
 
             <div>
                 {props.data != undefined &&
-                    props.data.map((element, key) => {
+                    props.data.map((item) => {
                         return (
                             <Card
-                                key={key}
-                                productName={element.market_id}
-                                price={element.price}
+                                shopName={item.shop_name}
+                                price={item.price}
                                 image=""
                             />
                         );
