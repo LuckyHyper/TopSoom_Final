@@ -3,14 +3,14 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PriceList from "./components/PriceList";
-import Scan from "./components/scanner";
+import Scanner from "./components/Scanner/Scanner";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Admin from './components/Admin';
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "http://192.168.1.4:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
@@ -23,11 +23,11 @@ axios.interceptors.request.use(function (config) {
 
 function App() {
     const [data, setData] = useState(null);
-    const [text, setText] = useState("");
+    const [barcode, setBarcode] = useState("");
 
     const showProduct = async () => {
         return await axios
-            .get(`http://127.0.0.1:8000/api/price?barcode=${text}`)
+            .get(`/api/price?barcode=${barcode}`)
 
             .then((res) => {
                 setData(res.data);
@@ -40,14 +40,14 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<PriceList data={data} setData={setData} />} />
+                    <Route exact path="/android_asset/index.html" element={<PriceList data={data} setData={setData} />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route
                         path="/scan"
                         element={
-                            <Scan showProduct={showProduct} setText={setText} />
+                            <Scanner showProduct={showProduct} setBarcode={setBarcode}/>
                         }
                     />
                     <Route
