@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PriceList from "./components/PriceList";
 import Scan from "./components/scanner";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 import Admin from "./components/Admin";

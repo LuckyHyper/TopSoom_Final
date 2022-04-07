@@ -5,6 +5,7 @@ div.NavbarContainer {
     display: flex;
     align-items: center;
     padding: 0 1.5em;
+    background-color: #fff;
 }
 div.LeftSection {
     display: flex;
