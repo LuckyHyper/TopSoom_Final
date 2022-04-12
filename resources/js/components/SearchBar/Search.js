@@ -3,10 +3,6 @@ import {Link} from 'react-router-dom';
 import "./Search.css";
 
 export default function Search(props) {
-    const [search,setSearch] = useState();
-
-
-
     return (
         <div className="search-bar">
             <div className="search-box">
@@ -20,7 +16,7 @@ export default function Search(props) {
 
             <Link
                 className="btn-cta-freequote search-btn"
-                to="/"
+                to="/android_asset/index.html"
                 onClick={props.ProductsByName}
             >
                 <i className="fa fa-search"></i>

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import "../../css/app.css";
+import React, { useState } from "react";
 import Card from "./Card";
 import Navbar from "./Navbar/Navbar";
 
@@ -10,10 +9,8 @@ import axios from "axios";
 export default function PriceList(props) {
     const [search, setSearch] = useState([]);
     const ProductsByName = async () => {
-        console.log("test");
-        console.log(props.data);
         return await axios
-            .get(`http://127.0.0.1:8000/api/price?product_name=${search}`)
+            .get(`/api/price?product_name=${search}`)
 
             .then((res) => {
                 props.setData(res.data);
@@ -29,9 +26,10 @@ export default function PriceList(props) {
 
             <div>
                 {props.data != undefined &&
-                    props.data.map((item) => {
+                    props.data.map((item, key) => {
                         return (
                             <Card
+                                key={key}
                                 shopName={item.shop_name}
                                 price={item.price}
                                 image=""
