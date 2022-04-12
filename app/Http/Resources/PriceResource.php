@@ -15,9 +15,9 @@ class PriceResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'barcode' => $this->barcode,
-            'Pname' => $this->Pname,
-            'Sname' => $this->Sname,
+            'product_id' => $this->product_id,
+            'product_name' => $this->product_name,
+            'shop_name' => $this->shop_name,
             'price' => $this->price,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

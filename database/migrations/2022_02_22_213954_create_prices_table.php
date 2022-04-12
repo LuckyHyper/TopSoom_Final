@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('prices', function (Blueprint $table) {
-            $table->increments('product_id');
-            $table->string("barcode");
-            $table->string('product_name')->nullable();
-            $table->string('shop_name')->nullable();
+            $table->bigIncrements('product_id');
+            $table->string('barcode');
+            $table->string('product_name');
+            $table->string('shop_name');
             $table->string('price');
             $table->timestamps();
         });

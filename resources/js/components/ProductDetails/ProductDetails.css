@@ -1,0 +1,32 @@
+div.ProductContainer {
+    height: 60px;
+}
+div.Wrapper {
+    padding: 50px;
+    display: flex;
+}
+div.ImgContainer {
+    flex: 1;
+}
+img.Image {
+    width: 90%;
+    height: 90vh;
+    object-fit: cover;
+}
+div.InfoContainer {
+    flex: 1;
+    padding: 0px 50px;
+}
+h1.Title {
+    font-weight: 200;
+    font-size: 50px;
+    font-family: cursive;
+}
+span.Price {
+    font-weight: 100;
+    font-family: Georgia, serif;
+}
+span.Descr {
+    font-weight: 100;
+    font-family: Georgia, serif;
+}

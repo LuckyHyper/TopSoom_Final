@@ -15,10 +15,9 @@ class PriceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-
+    { 
         if(!empty($request->barcode)){
-            $price= price::where('barcode',$request->barcode)->get();
+            $price= Price::where('barcode',$request->barcode)->get();
         }
         elseif(!empty($request->product_name)){
             $price= Price::where('product_name',$request->product_name)->get();
@@ -32,24 +31,17 @@ class PriceController extends Controller
         return response()->json(PriceResource::collection($price));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $price = Price::create([
             'barcode' => $request->barcode,
-            'product_name' => $request->Pname,
-            'shop_name' => $request->Sname,
+            'product_name' => $request->product_name,
+            'shop_name' => $request->shop_name,
             'price' => $request->price
          ]);
         
         return response()->json( new PriceResource($price));
     }
-
 
     /**
      * Remove the specified resource from storage.

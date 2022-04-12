@@ -2,22 +2,37 @@ import React, { useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./components/Home";
+import PriceList from "./components/PriceList";
 import Scan from "./components/scanner";
-import ProductDetails from "./components/productDetails/productDetails";
-import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+
+import Admin from "./components/Admin";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://192.168.1.106:8000";
+axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.post["Accept"] = "application/json";
+
+axios.defaults.withCredentials = true;
+axios.interceptors.request.use(function (config) {
+    const token = localStorage.getItem("auth_token");
+    config.headers.Authorization = token ? `Bearer ${token}` : "";
+    return config;
+});
 
 function App() {
-    const [data, setdata] = useState(null);
-    const [barcode, setBarcode] = useState("");
-    
+    const [data, setData] = useState(null);
+    const [text, setText] = useState("");
+
     const showProduct = async () => {
         return await axios
-            .get(`http://127.0.0.1:8000/api/price?barcode=${barcode}`)
+
+            .get(`/api/price?barcode=${text}`)
 
             .then((res) => {
-                setdata(res.data);
+                setData(res.data);
             })
 
             .catch((err) => console.log(err));
@@ -27,17 +42,22 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<Home data={data} setdata={setdata} />} />
-                    <Route exact path="/register" element={<Register />} />
-                    <Route exact path="/login" element={<Login />} />
+                    <Route
+                        exact
+                        path="/"
+                        element={<PriceList data={data} setData={setData} />}
+                    />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/Register" element={<Register />} />
+                    <Route path="/admin" element={<Admin />} />
                     <Route
                         path="/scan"
                         element={
-                            <Scan showProduct={showProduct} setText={setBarcode} />
+                            <Scan showProduct={showProduct} setText={setText} />
                         }
                     />
                     <Route
-                        path="/productDetails"
+                        path="/ProductDetails"
                         element={<ProductDetails />}
                     />
                 </Routes>

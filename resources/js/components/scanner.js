@@ -1,37 +1,35 @@
-import React, { useState } from "react";
-import Navbar from "./navbar";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Navbar from "./Navbar/Navbar";
 
 export default function Scan(props) {
-    const [text, setText] = useState("");
+    useEffect(() => {
+        Quagga.init(
+            {
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scan"),
+                },
+                decoder: {
+                    readers: ["ean_reader"],
+                },
+            },
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+            }
+        );
+    });
 
     return (
         <div>
             <Navbar />
             <br />
-            <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="basic-addon1">
-                        @
-                    </span>
-                </div>
-                <input
-                    onChange={(e) => props.setText(e.target.value)}
-                    type="text"
-                    className="form-control"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                />
-            </div>{" "}
-            <br />
-            <Link
-                to="/"
-                className="chakra-button"
-                onClick={props.showProduct}
-                title="show product"
-            >
-                Show product
-            </Link>
+            <div id="scan"></div>
         </div>
     );
 }
