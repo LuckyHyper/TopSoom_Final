@@ -1,25 +1,32 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./Search.css";
+import { BiSearch } from "react-icons/bi";
 
 export default function Search(props) {
+    const [data, setData] = useState();
+
+    function handleCLick(){
+        props.setSearch(data)
+        props.ProductsByName();
+    }
     return (
         <div className="search-bar">
-            <div className="search-box">
                 <input
                     type="text"
-                    onChange={(e)=> props.setSearch(e.target.value)}
+                    onChange={(e) => setData(e.target.value)}
                     className="search-input"
                     placeholder="Search"
                 />
-            </div>
 
             <Link
                 className="btn-cta-freequote search-btn"
-                to="/android_asset/index.html"
-                onClick={props.ProductsByName}
+                to="/"
+                onClick={handleCLick}
             >
-                <i className="fa fa-search"></i>
+                <div className="bi-search">
+                    <BiSearch size={18}/>
+                </div>
             </Link>
         </div>
     );

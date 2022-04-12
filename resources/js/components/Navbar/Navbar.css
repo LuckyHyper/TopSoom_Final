@@ -1,11 +1,13 @@
-/* Navbar.js*/
 div.NavbarContainer {
     height: 60px;
-    box-shadow: 0 1px 3px rgba(15, 15, 15, 0.13);
+    box-shadow: 0 2px 3px rgba(15, 15, 15, 0.13);
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     align-items: center;
     padding: 0 1.5em;
     background-color: #fff;
+
 }
 div.LeftSection {
     display: flex;
@@ -30,6 +32,7 @@ ul.LinksWrapper {
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: center;
     height: 100%;
     list-style: none;
 }
@@ -71,22 +74,24 @@ div.MobileNavLinksContainer {
 
 ul.MobileLinksWrapper {
     margin: 0;
-    padding: 0;
+    padding: 0 ;
+    padding-top: 6rem;
     display: flex;
     height: 100%;
     list-style: none;
     background-color: #fff;
-    width: 100%;
+    width: 70%;
     flex-direction: column;
     position: fixed;
-    top: 65px;
+    top: 0;
     left: 0;
+    background-color: #3d5361; /*#8c8c8c; */
 }
 
 li.MobileLinkItem {
     width: 100%;
-    padding: 0 1.1em;
-    color: #222;
+    padding: 0.5rem 15%;
+    color: #fff;
     font-weight: 500;
     font-size: 16px;
     display: flex;
@@ -98,11 +103,12 @@ a.MobileLink {
     color: inherit;
     font-size: inherit;
     font-family: system-ui;
-    margin-left: 10px;
+    margin-left: 1rem;
+    border-bottom: 2px solid #fff;
 }
 
 div.Marginer {
-    height: 2em;
+    height: 4em;
 }
 /* MenuToggle.js*/
 div.Button {
@@ -113,7 +119,7 @@ div.Button {
 /* SignIn.js*/
 div.SignInContainer {
     display: flex;
-    margin-left: 10px;
+    justify-content: center;
 }
 button.RegisterButton {
     border: 0;
@@ -164,4 +170,23 @@ button.LoginButton:hover {
 }
 button.LoginButton :not(:last-of-type) {
     margin-right: 7px;
+}
+
+@media only screen and (max-width: 768px) {
+    div.NavbarContainer {
+        padding: 0 1rem 0 0;
+    }
+    .SignInContainer {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem 30%;
+        flex-direction: column;
+    }
+    button.RegisterButton{
+        padding: 0.5rem 2rem;
+    }
+    button.LoginButton{
+        margin: 10px 0 5px 6px;
+        padding: 0.5rem 2rem;
+    }
 }

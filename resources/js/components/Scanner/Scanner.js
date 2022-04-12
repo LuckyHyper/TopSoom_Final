@@ -16,7 +16,7 @@ function Scanner(props) {
       <div>
         <h1>======= {result} ======</h1>
         <br></br> 
-        <Link to='/android_asset/index.html'>GOOOO</Link>
+        <Link to='/'>GOOOO</Link>
         <br></br> 
         <Quag onDetected={_onDetected} />
       </div>

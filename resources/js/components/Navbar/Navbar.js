@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Logo } from "../Logo/Logo";
 import SignIn from "./SignIn";
@@ -7,6 +7,7 @@ import { MobileNavLinks } from "./MobileNavLinks";
 import "./Navbar.css";
 
 export default function Navbar(props) {
+    
     const DeviceSize = {
         mobile: 768,
         tablet: 992,
@@ -16,15 +17,35 @@ export default function Navbar(props) {
     const isMobile = useMediaQuery({ maxWidth: DeviceSize.mobile });
 
     return (
-        <div className="NavbarContainer">
-            <div className="LeftSection">
-                <Logo />
-            </div>
-            <div className="MiddleSection">{!isMobile && <NavLinks />}</div>
-            <div className="RightSection">
-                {!isMobile && <SignIn />}
-                {isMobile && <MobileNavLinks />}
-            </div>
+        <div>
+            {!isMobile && (
+                <div className="NavbarContainer">
+                    <div className="LeftSection">
+                        <Logo />
+                    </div>
+                    <div className="MiddleSection">
+                        {!isMobile && <NavLinks />}
+                    </div>
+                    <div className="RightSection">
+                        {!isMobile && <SignIn />}
+                        {isMobile && <MobileNavLinks />}
+                    </div>
+                </div>
+            )} 
+            {isMobile && (
+                <div className="NavbarContainer">
+                    <div className="LeftSection">
+                        {!isMobile && <SignIn />}
+                        {isMobile && <MobileNavLinks />}
+                    </div>
+                    <div className="MiddleSection">
+                        {!isMobile && <NavLinks />}
+                    </div>
+                    <div className="RightSection">
+                        <Logo />
+                    </div>
+                </div>
+            )} 
         </div>
     );
 }

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Quagga from 'quagga';
-
 
 class Quag extends Component {
   componentDidMount() {

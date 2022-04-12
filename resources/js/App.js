@@ -4,13 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PriceList from "./components/PriceList";
 import Scanner from "./components/Scanner/Scanner";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
-
 import Admin from "./components/Admin";
 import axios from "axios";
-
+import "../css/app.css";
 axios.defaults.baseURL = "http://192.168.1.102:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
@@ -53,7 +52,10 @@ function App() {
                     <Route
                         path="/scan"
                         element={
-                            <Scanner showProduct={showProduct} setBarcode={setBarcode}/>
+                            <Scanner
+                                showProduct={showProduct}
+                                setBarcode={setBarcode}
+                            />
                         }
                     />
                     <Route

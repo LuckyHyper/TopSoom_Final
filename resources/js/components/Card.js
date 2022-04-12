@@ -51,6 +51,22 @@ function Card(props) {
                 <Button routing title="view details" path={"/ProductDetails"} />
             </Stack>
         </Box>
+        /*
+        <div className="cards-container">
+            <Box
+                p={4}
+                display={{ md: "flex" }}
+                justifyContent="center"
+                width="12rem"
+                height="12rem"
+                borderWidth={4}
+                margin={3}
+                borderRadius="20%"
+            >
+                <h1>hello</h1>
+            </Box>
+        </div>
+        */
     );
 }
 
