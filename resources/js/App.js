@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import '../css/app.css';
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PriceList from "./components/PriceList";
+import ProductList from "./components/ProductList";
 import Scanner from "./components/Scanner/Scanner";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -40,7 +42,8 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route exact path="/android_asset/index.html" element={<PriceList data={data} setData={setData} />} />
+                    <Route path="/test" element={<ProductList />} />
+                    <Route path="/" element={<PriceList data={data} setData={setData}/>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/admin" element={<Admin />} />

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Quagga from 'quagga';
-
 
 class Quag extends Component {
   componentDidMount() {
@@ -11,7 +9,7 @@ class Quag extends Component {
           constraints: {
             width: 640,
             height: 480,
-            facingMode: 'environment', // or user
+            facingMode: 'environment',
           },
         },
         locator: {

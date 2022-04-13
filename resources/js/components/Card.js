@@ -1,64 +1,62 @@
 import React from "react";
-import {
-    Box,
-    Flex,
-    AspectRatio,
-    Image,
-    Text,
-    Link,
-    Stack,
-} from "@chakra-ui/react";
-import Button from "./Button";
-import ProductDetails from "./ProductDetails/ProductDetails";
+import { Box, Image, Text } from "@chakra-ui/react";
+import { FiArrowRight } from "react-icons/fi";
+import { BiPlus } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 function Card(props) {
-    const { shopName , image, price } = props;
-
+    
     return (
         <Box
-            p={4}
-            display={{ md: "flex" }}
-            // maxWidth="27rem"
-            borderWidth={4}
-            margin={5}
+            display="flex"
+            flexDirection="column"
+            mb={5}
+            mt={5}
+            mr={3}
+            ml={3}
+            width="125px"
+            height="140px"
+            bgColor="#f2f2f2"
+            borderRadius="1.5rem"
+            boxShadow="1px 1px 10px 1px rgba(0,0,0,0.15)"
         >
+            <Box
+                pt={3}
+                pl={3}
+                pr={3}
+                width="100%"
+                display="flex"
+                justifyContent="space-between"
+            >
+                <Text fontSize="20px">
+                    <BiPlus />
+                </Text>
+
+                <Link to="/">
+                    <Text fontSize="18px">
+                        <FiArrowRight />
+                    </Text>
+                </Link>
+            </Box>
             <Image
-                maxWidth="150px"
+                p={3}
+                Width="80px"
+                height="80px"
                 borderRadius={"md"}
                 margin="auto"
-                src={image}
+                src=""
                 alt="image"
             />
-
-            <Stack
-                align={{ base: "center", md: "stretch" }}
-                textAlign={{ base: "center", md: "left" }}
-                mt={{ base: 4, md: 0 }}
-                ml={{ md: 6 }}
+            <Text
+                display="flex"
+                justifyContent="center"
+                fontFamily="'Roboto', sans-serif"
+                fontSize="12px"
+                p={2}
+                mb={2}
             >
-                 <Text
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    fontSize="lg"
-                    letterSpacing="wide"
-                    color="teal.600"
-                >
-                    {shopName}
-                </Text>
-                
-                <Link
-                    my={1}
-                    display="block"
-                    fontSize="md"
-                    lineHeight="normal"
-                    fontWeight="semibold"
-                    href="#"
-                >
-                    {price}
-                </Link>
-
-                <Button routing title="view details" path={"/ProductDetails"} />
-            </Stack>
+                Fromage
+            </Text>
         </Box>
     );
 }
