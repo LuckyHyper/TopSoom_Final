@@ -1,72 +1,64 @@
 import React from "react";
-import { Box, Image, Text, Link, Stack } from "@chakra-ui/react";
-import Button from "./Button";
+import { Box, Image, Text } from "@chakra-ui/react";
+import { FiArrowRight } from "react-icons/fi";
+import { BiPlus } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 function Card(props) {
-    const { shopName, image, price } = props;
-
     return (
         <Box
-            p={4}
-            display={{ md: "flex" }}
-            // maxWidth="27rem"
-            borderWidth={4}
-            margin={5}
+            display="flex"
+            flexDirection="column"
+            mb={5}
+            mt={5}
+            mr={3}
+            ml={3}
+            width="125px"
+            height="140px"
+            bgColor="#f2f2f2"
+            borderRadius="1.5rem"
+            boxShadow="1px 1px 10px 1px rgba(0,0,0,0.15)"
         >
-            <Image
-                maxWidth="150px"
-                borderRadius={"md"}
-                margin="auto"
-                src={image}
-                alt="image"
-            />
-
-            <Stack
-                align={{ base: "center", md: "stretch" }}
-                textAlign={{ base: "center", md: "left" }}
-                mt={{ base: 4, md: 0 }}
-                ml={{ md: 6 }}
+            <Box
+                pt={3}
+                pl={3}
+                pr={3}
+                width="100%"
+                display="flex"
+                justifyContent="space-between"
             >
-                <Text
-                    fontWeight="bold"
-                    textTransform="uppercase"
-                    fontSize="lg"
-                    letterSpacing="wide"
-                    color="teal.600"
-                >
-                    {shopName}
+                <Text fontSize="20px">
+                    <BiPlus />
                 </Text>
 
-                <Link
-                    my={1}
-                    display="block"
-                    fontSize="md"
-                    lineHeight="normal"
-                    fontWeight="semibold"
-                    href="#"
-                >
-                    {price}
+                <Link to="/price-list"
+                 state={{ productName: props.productName }}
+                 >
+                    <Text fontSize="18px">
+                        <FiArrowRight />
+                    </Text>
                 </Link>
-
-                <Button routing title="view details" path={"/ProductDetails"} />
-            </Stack>
-        </Box>
-        /*
-        <div className="cards-container">
-            <Box
-                p={4}
-                display={{ md: "flex" }}
-                justifyContent="center"
-                width="12rem"
-                height="12rem"
-                borderWidth={4}
-                margin={3}
-                borderRadius="20%"
-            >
-                <h1>hello</h1>
             </Box>
-        </div>
-        */
+            <Image
+                p={3}
+                Width="80px"
+                height="80px"
+                borderRadius={"md"}
+                margin="auto"
+                src="/image/Manar-HO-85g"
+                alt="image"
+            />
+            <Text
+                display="flex"
+                justifyContent="center"
+                fontFamily="'Roboto', sans-serif"
+                fontSize="12px"
+                p={2}
+                mb={2}
+            >
+                {props.productName}
+            </Text>
+        </Box>
     );
 }
 

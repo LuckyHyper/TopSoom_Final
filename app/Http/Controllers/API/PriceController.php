@@ -20,8 +20,12 @@ class PriceController extends Controller
             $price= Price::where('barcode',$request->barcode)->get();
         }
         elseif(!empty($request->product_name)){
-            $price= Price::where('product_name',$request->product_name)->get();
+            if($request->distinct==1){
+            $price= Price::select('product_name')->distinct()->where('product_name', 'LIKE',"%$request->product_name%")->get();
             }else{
+                $price= Price::select('*')->where('product_name', 'LIKE',"%$request->product_name%")->get();
+            }
+        }else{
                 $price= Price::all();
             }
 
@@ -30,6 +34,7 @@ class PriceController extends Controller
         }
         return response()->json(PriceResource::collection($price));
     }
+    
 
     public function store(Request $request)
     {

@@ -3,6 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PriceList from "./components/PriceList";
+import ProductList from "./components/ProductList";
 import Scanner from "./components/Scanner/Scanner";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -27,7 +28,6 @@ function App() {
 
     const showProduct = async () => {
         return await axios
-
             .get(`/api/price?barcode=${barcode}`)
 
             .then((res) => {
@@ -42,13 +42,16 @@ function App() {
             <Router>
                 <Routes>
                     <Route
-                        exact
                         path="/"
+                        element={<ProductList data={data} setData={setData} />}
+                    />
+                    <Route
+                        path="/price-list"
                         element={<PriceList data={data} setData={setData} />}
                     />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
-                    <Route path="/admin" element={<Admin />} />
+                        <Route path="/admin" element={<Admin />} />
                     <Route
                         path="/scan"
                         element={
