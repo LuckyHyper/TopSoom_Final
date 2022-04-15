@@ -3,27 +3,38 @@ import Navbar from "./Navbar/Navbar";
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
 import { Box, Image, Text, Stack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import axios from "axios";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
 function PriceList(props) {
+    const location = useLocation();
+    const data = location.state?.productName;
     const [search, setSearch] = useState([]);
-    const [test, setTest] = useState(0);
 
-    useEffect(() => {
+    useEffect( async () => {
         Aos.init();
-    }, []);
-
-    const ProductsByName = async () => {
-        setTest(1);
-        return await axios
-            .get(`/api/price?product_name=${search}`)
+        await axios
+            .get(`/api/price?product_name=${data}`)
 
             .then((res) => {
                 props.setData(res.data);
+                console.log(props.data);
+            })
+
+            .catch((err) => console.log(err));
+    }, []);
+    const ProductsByName = async () => {
+        
+        return await axios
+            .get(`/api/price?distinct=1&product_name=${search}`)
+
+            .then((res) => {
+                props.setData(res.data);
+                console.log(res.data);
+                console.log(props.data);
             })
 
             .catch((err) => console.log(err));
@@ -36,11 +47,8 @@ function PriceList(props) {
                 <Search
                     setSearch={setSearch}
                     ProductsByName={ProductsByName}
-                    setTest={setTest}
                 />
             </div>
-            {test != 0 ? (
-                <Stack>
                     <Box
                         p={4}
                         display="flex"
@@ -81,7 +89,7 @@ function PriceList(props) {
                                 pl={5}
                                 pr={7}
                             >
-                                {search}
+                                {data}
                             </Text>
                             <Text fontSize="20px">
                                 <Link to="/">
@@ -107,7 +115,7 @@ function PriceList(props) {
                                             borderRadius="25px"
                                         >
                                             <Text fontSize="13px">
-                                                {item.shop_name}
+                                               {item.shop_name}
                                             </Text>
 
                                             <Text fontSize="15px">
@@ -118,8 +126,6 @@ function PriceList(props) {
                                 })}
                         </Box>
                     </Box>
-                </Stack>
-            ) : null}
 
             <div style={{ marginBottom: 15 }}>
                 <ScanButton></ScanButton>

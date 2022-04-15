@@ -32,7 +32,7 @@ function Card(props) {
                     <BiPlus />
                 </Text>
 
-                <Link to="/">
+                <Link to="/price-list" state={{productName : props.productName}}>
                     <Text fontSize="18px">
                         <FiArrowRight />
                     </Text>
@@ -55,7 +55,7 @@ function Card(props) {
                 p={2}
                 mb={2}
             >
-                Fromage
+                {props.productName}
             </Text>
         </Box>
     );

@@ -42,8 +42,8 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route path="/test" element={<ProductList />} />
-                    <Route path="/" element={<PriceList data={data} setData={setData}/>} />
+                    <Route path="/" element={<ProductList data={data} setData={setData} />} />
+                    <Route path="/price-list" element={<PriceList data={data} setData={setData}/>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/admin" element={<Admin />} />

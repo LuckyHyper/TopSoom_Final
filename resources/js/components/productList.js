@@ -9,12 +9,14 @@ import axios from "axios";
 export default function ProductList(props) {
     const [search, setSearch] = useState([]);
     const ProductsByName = async () => {
-        console.log(props.data);
+        
         return await axios
-            .get(`/api/price?product_name=${search}`)
+            .get(`/api/price?distinct=1&product_name=${search}`)
 
             .then((res) => {
                 props.setData(res.data);
+                console.log(res.data);
+                console.log(props.data);
             })
 
             .catch((err) => console.log(err));
@@ -25,12 +27,15 @@ export default function ProductList(props) {
             <Navbar />
             <Search setSearch={setSearch} ProductsByName={ProductsByName} />
             <Box display="flex" flexWrap="wrap" justifyContent="center" mt={12}>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                { props.data != undefined &&
+                                props.data.map((item, key) => {
+                                    return (
+                                        <Card productName={item.product_name}/>
+                                        
+                                    )
+                                })
+                }
+                
             </Box>
 
             <div style={{ marginBottom: 15 }}>
@@ -39,3 +44,4 @@ export default function ProductList(props) {
         </div>
     );
 }
+
