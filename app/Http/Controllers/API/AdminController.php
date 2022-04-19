@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function insertCSV(Request $request)
     {
-        //foreach($array as $item){
+        if($request->user->role==0){
         for($i=0;$i<count($request->prices);$i++) {
             $price = Price::create([
                 'barcode' => $request->prices[$i]['barcode'],
@@ -22,8 +22,7 @@ class AdminController extends Controller
         
          return response()->json([
             'status' => 200,
-            'message'=>'Registered Successfully',
-            'prices' => $request->prices
-        ]);
+            'message'=>'Registered Successfully'
+        ]); }
     }
 }

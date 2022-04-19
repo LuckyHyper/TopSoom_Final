@@ -16,10 +16,12 @@ function Login() {
     });
     const handleShowClick = () => setShowPassword(!showPassword);
     const handleChange = (e) => {
+        console.log('test');
         setLogin({ ...login, [e.target.name]: e.target.value });
     };
     const loginSubmit = (e) => {
         e.preventDefault();
+        console.log("login");
         const Data = {
             email: login.email,
             password: login.password,
@@ -48,14 +50,14 @@ function Login() {
             <div id="Body">
                 <Navbar />
                 <div id="container">
-                    <div id="loginform" onSubmit={loginSubmit}>
+                    <form id="loginform" onSubmit={loginSubmit}>
                         <h2 id="headerTitle">Login</h2>
                         <div className="row">
-                            <label>Username</label>
+                            <label>Email</label>
                             <input
-                                placeholder="Enter your username"
+                                placeholder="Enter your email"
                                 type="text"
-                                value={login.email}
+                                name="email"
                                 onChange={handleChange}
                             />
                             <span>{login.error_list.email}</span>
@@ -63,6 +65,7 @@ function Login() {
                             <input
                                 placeholder="Enter your password"
                                 type="password"
+                                name="password"
                                 value={login.password}
                                 onChange={handleChange}
                             />
@@ -71,7 +74,7 @@ function Login() {
                         <div id="button" className="row">
                             <button>Log In</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

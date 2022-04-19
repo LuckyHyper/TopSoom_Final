@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:600|Work+Sans:400,500,600,700&display=swap");
-body.chakra-ui-light {
+/*body.chakra-ui-light {
     background: linear-gradient(
         135deg,
         rgba(34, 193, 195, 1) 0%,
         rgba(253, 187, 45, 1) 100%
     );
-}
+} */
 #Body {
     font-family: "work sans";
     width: 100%;
     height: 100%;
+    position: fixed;
 }
 
 #container {

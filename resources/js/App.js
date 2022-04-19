@@ -11,7 +11,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Admin from "./components/Admin";
 import axios from "axios";
 import "../css/app.css";
-axios.defaults.baseURL = "http://192.168.1.102:8000";
+axios.defaults.baseURL = "http://192.168.1.107:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 

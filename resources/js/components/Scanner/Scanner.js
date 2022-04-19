@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Quag from './Quagga';
-import { useNavigate, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
 function Scanner(props) {
   const [result, setResult] = useState();
-  const navigate = useNavigate();
+  
 
   const _onDetected = result => {
     setResult(result);
