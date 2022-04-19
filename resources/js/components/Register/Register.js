@@ -43,28 +43,31 @@ function Register() {
                 <Navbar />
 
                 <div id="container">
-                    <div id="loginform" onSubmit={registerSubmit}>
+                    <form id="loginform" onSubmit={registerSubmit}>
                         <h2 id="headerTitle">Register</h2>
                         <div className="row">
-                            <label>Name</label>
-                            <input
-                                placeholder="Enter your name"
-                                type="text"
-                                value={register.name}
-                                onChange={handleChange}
-                            />
                             <label>Username</label>
                             <input
                                 placeholder="Enter your username"
                                 type="text"
-                                value={register.email}
+                                name="name"
+                                value={register.name}
                                 onChange={handleChange}
                             />
                             <span>{register.error_list.email}</span>
+                            <label>Name</label>
+                            <input
+                                placeholder="Enter your Email"
+                                type="text"
+                                name="email"
+                                value={register.email}
+                                onChange={handleChange}
+                            />
                             <label>Password</label>
                             <input
                                 placeholder="Enter your password"
                                 type="password"
+                                name="password"
                                 value={register.password}
                                 onChange={handleChange}
                             />
@@ -73,7 +76,7 @@ function Register() {
                         <div id="button" className="row">
                             <button>Register</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
