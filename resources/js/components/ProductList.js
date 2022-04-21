@@ -3,7 +3,7 @@ import Card from "./Card";
 import Navbar from "./Navbar/Navbar";
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
-import { Box , Stack} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import axios from "axios";
 import Aos from "aos";
 import "aos/dist/aos.css";
