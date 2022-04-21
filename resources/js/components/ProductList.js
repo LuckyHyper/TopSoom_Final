@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import Navbar from "./Navbar/Navbar";
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
-import { Box } from "@chakra-ui/react";
+import { Box , Stack} from "@chakra-ui/react";
 import axios from "axios";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function ProductList(props) {
     const [search, setSearch] = useState([]);
@@ -15,17 +17,23 @@ export default function ProductList(props) {
 
             .then((res) => {
                 props.setData(res.data);
-                console.log(res.data);
-                console.log(props.data);
             })
 
             .catch((err) => console.log(err));
     };
+    useEffect(() => {
+        Aos.init();
+    }, []);
 
     return (
         <div>
             <Navbar />
-            <Search setSearch={setSearch} ProductsByName={ProductsByName} />
+            <div data-aos="slide-down" data-aos-duration="1200">
+                <Search
+                    setSearch={setSearch}
+                    ProductsByName={ProductsByName}
+                />
+            </div>
             <Box display="flex" flexWrap="wrap" justifyContent="center" mt={12}>
                 { props.data != undefined &&
                                 props.data.map((item, key) => {
@@ -43,4 +51,3 @@ export default function ProductList(props) {
         </div>
     );
 }
-

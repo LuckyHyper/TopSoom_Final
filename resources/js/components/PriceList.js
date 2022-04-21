@@ -17,6 +17,7 @@ function PriceList(props) {
 
     useEffect( async () => {
         Aos.init();
+        console.log(data);
         await axios
             .get(`/api/price?barcode=${data}`)
 
