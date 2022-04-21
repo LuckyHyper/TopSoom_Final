@@ -11,7 +11,7 @@ export default function ProductList(props) {
     const ProductsByName = async () => {
         
         return await axios
-            .get(`/api/price?distinct=1&product_name=${search}`)
+            .get(`/api/product?product_name=${search}`)
 
             .then((res) => {
                 props.setData(res.data);
@@ -30,8 +30,7 @@ export default function ProductList(props) {
                 { props.data != undefined &&
                                 props.data.map((item, key) => {
                                     return (
-                                        <Card productName={item.product_name}/>
-                                        
+                                        <Card product_name={item.product_name} barcode={item.barcode}/>
                                     )
                                 })
                 }

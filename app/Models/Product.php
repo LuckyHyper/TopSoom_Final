@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Price extends Model
+class Product extends Model
 {
     use HasFactory;
     protected $fillable= [
         'barcode',
-        'shop_name',
-        'price'
+        'product_name',
+        'image'
     ];
+    
+    protected $primaryKey='barcode';
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
-import { Box, Image, Text, Stack } from "@chakra-ui/react";
+import { Box, Image, Text} from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import axios from "axios";
@@ -11,13 +11,14 @@ import "aos/dist/aos.css";
 
 function PriceList(props) {
     const location = useLocation();
-    const data = location.state?.productName;
+    const data = location.state?.barcode;
+    const product_name = location.state?.product_name;
     const [search, setSearch] = useState([]);
 
     useEffect( async () => {
         Aos.init();
         await axios
-            .get(`/api/price?product_name=${data}`)
+            .get(`/api/price?barcode=${data}`)
 
             .then((res) => {
                 props.setData(res.data);
@@ -29,7 +30,7 @@ function PriceList(props) {
     const ProductsByName = async () => {
         
         return await axios
-            .get(`/api/price?distinct=1&product_name=${search}`)
+            .get(`/api/product?product_name=${search}`)
 
             .then((res) => {
                 props.setData(res.data);
@@ -89,7 +90,7 @@ function PriceList(props) {
                                 pl={5}
                                 pr={7}
                             >
-                                {data}
+                                {product_name}
                             </Text>
                             <Text fontSize="20px">
                                 <Link to="/">
