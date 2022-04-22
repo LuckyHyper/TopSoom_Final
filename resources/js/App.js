@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../css/app.css';
+import "../css/app.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -25,9 +25,8 @@ axios.interceptors.request.use(function (config) {
 
 function App() {
     const [data, setData] = useState(null);
-    const [barcode, setBarcode] = useState("");
 
-    const showProduct = async () => {
+    const showProduct = async (barcode) => {
         return await axios
             .get(`/api/price?barcode=${barcode}`)
 
@@ -43,7 +42,7 @@ function App() {
             <Router>
                 <Routes>
                     <Route
-                        path="/"
+                        path="/android_asset/index.html"
                         element={<ProductList data={data} setData={setData} />}
                     />
                     <Route
@@ -52,16 +51,8 @@ function App() {
                     />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
-                        <Route path="/admin" element={<Admin />} />
-                    <Route
-                        path="/scan"
-                        element={
-                            <Scanner
-                                showProduct={showProduct}
-                                setBarcode={setBarcode}
-                            />
-                        }
-                    />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/scan" element={<Scanner />} />
                     <Route
                         path="/ProductDetails"
                         element={<ProductDetails />}

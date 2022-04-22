@@ -30,7 +30,8 @@ class Quag extends Component {
         Quagga.start()
       },
     )
-    Quagga.onDetected(this._onDetected)
+    Quagga.onDetected(this._onDetected);
+    Quagga.stop()
   }
 
   componentWillUnmount() {

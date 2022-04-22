@@ -46,11 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        myWebView.getSettings().setJavaScriptEnabled(true);
-        myWebView.getSettings().setDomStorageEnabled(true);
-        myWebView.getSettings().setAllowFileAccessFromFileURLs(true);
-        myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
-        myWebView.loadUrl("file:///android_asset/index.html");
+
         myWebView.loadUrl("file:///android_asset/index.html");
 
 
