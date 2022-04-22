@@ -4,6 +4,7 @@ import "./Search.css";
 import { BiSearch } from "react-icons/bi";
 
 export default function Search(props) {
+
     return (
         <div className="search-bar">
                 <input

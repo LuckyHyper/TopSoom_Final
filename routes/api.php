@@ -6,7 +6,6 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\ProductController;
 
-
 Route::get('price',[ProductController::class,'price']);
 Route::get('product',[ProductController::class,'search']);
 Route::post('register',[AuthController::class,'register']);

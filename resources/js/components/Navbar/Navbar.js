@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Logo } from "../Logo/Logo";
 import SignIn from "./SignIn";
@@ -7,6 +7,7 @@ import { MobileNavLinks } from "./MobileNavLinks";
 import "./Navbar.css";
 
 export default function Navbar(props) {
+    
     const DeviceSize = {
         mobile: 768,
         tablet: 992,

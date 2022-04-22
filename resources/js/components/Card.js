@@ -5,7 +5,6 @@ import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 function Card(props) {
-    
     return (
         <Box
             display="flex"
@@ -33,6 +32,7 @@ function Card(props) {
                 </Text>
 
                 <Link to="/price-list" state={{barcode : props.barcode, product_name: props.product_name}}>
+
                     <Text fontSize="18px">
                         <FiArrowRight />
                     </Text>

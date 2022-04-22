@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useEffect } from "framer-motion";
 import React from "react";
 import "./Navbar.css";
 
@@ -15,7 +15,7 @@ const transition = { duration: 0.33 };
 
 export function MenuToggle({ toggle, isOpen }) {
     return (
-        <div className="Button" onClick={toggle}>
+        <div className="Button" onClick={toggle} ata-aos="slide-right" data-aos-duration="1500">
             <svg width="23" height="23" viewBox="0 0 23 23">
                 <Path
                     animate={isOpen ? "open" : "closed"}

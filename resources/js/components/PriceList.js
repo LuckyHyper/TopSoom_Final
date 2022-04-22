@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar/Navbar";
+
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
-import { Box, Image, Text} from "@chakra-ui/react";
+import { Box, Image, Text, Stack} from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import axios from "axios";
@@ -43,7 +44,7 @@ function PriceList(props) {
     };
 
     return (
-        <div>
+        <Stack bgColor="#fff" width="100%" height="100vh">
             <Navbar />
             <div data-aos="slide-down" data-aos-duration="1000">
                 <Search
@@ -128,11 +129,10 @@ function PriceList(props) {
                                 })}
                         </Box>
                     </Box>
-
             <div style={{ marginBottom: 15 }}>
                 <ScanButton></ScanButton>
             </div>
-        </div>
+        </Stack>
     );
 }
 

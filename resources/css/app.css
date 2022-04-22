@@ -1,5 +1,6 @@
-
-html body{
+html,body.chakra-ui-light{
+    margin: 0;
     padding:0;
-    background-color: #d9d9d9;
+    height: 100vh;
+    width: 100%;
 }
