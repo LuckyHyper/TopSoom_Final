@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 
 class Price extends Model
 {
@@ -13,4 +14,8 @@ class Price extends Model
         'shop_name',
         'price'
     ];
+    public function price()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

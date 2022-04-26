@@ -31,9 +31,9 @@ class ProductController extends Controller
     public function price(Request $request)
     { 
         if(!empty($request->barcode)){
-            $price= Price::where('barcode',$request->barcode)->get();
+            $product= Product::where('barcode',$request->barcode)->get();
         }
-        return response()->json(PriceResource::collection($price));
+        return response()->json(ProductResource::collection($product));
     }
 
 }

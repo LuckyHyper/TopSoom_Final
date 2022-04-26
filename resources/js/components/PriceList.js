@@ -22,12 +22,8 @@ function PriceList(props) {
             .get(`/api/price?barcode=${barcode}`)
 
             .then((res) => {
-                console.log("//////////////FUCK/////////////");
-                console.log(barcode);
-                console.log("//////////////FUCK/////////////");
-                console.log(res.data);
+                console.log(res.data[0].price);
                 props.setData(res.data);
-
             })
 
             .catch((err) => console.log(err));
@@ -94,12 +90,10 @@ function PriceList(props) {
                 </Box>
 
                 <Box pl={8} pr={8}>
-                    {props.data != undefined &&
-                        props.data.map((item, key) => {
+                    {props.data  != undefined && 
+                        props.data[0].price.map((item) => {
                             return (
-                                <div key="{item}">
                                     <Box
-                                        key="{item}"
                                         pr={6}
                                         pl={6}
                                         pt={1}
@@ -119,7 +113,6 @@ function PriceList(props) {
                                             {item.price}
                                         </Text>
                                     </Box>
-                                </div>
                             );
                         })}
                 </Box>

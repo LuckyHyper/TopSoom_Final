@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Price;
 
 class Product extends Model
 {
@@ -15,4 +16,9 @@ class Product extends Model
     ];
     
     protected $primaryKey='barcode';
+
+    public function price()
+    {
+        return $this->hasMany(Price::class,'barcode','barcode');
+    }
 }
