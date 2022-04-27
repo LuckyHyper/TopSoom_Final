@@ -117,9 +117,7 @@ function PriceList(props) {
                         })}
                 </Box>
             </Box>
-            <div style={{ marginBottom: 15 }}>
-                <ScanButton></ScanButton>
-            </div>
+            <ScanButton></ScanButton>
         </Stack>
     );
 }

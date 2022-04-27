@@ -44,10 +44,7 @@ export default function ProductList(props) {
                 }
                 
             </Box>
-
-            <div style={{ marginBottom: 15 }}>
                 <ScanButton></ScanButton>
-            </div>
         </div>
     );
 }

@@ -12,6 +12,8 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Admin from "./components/Admin";
 import axios from "axios";
 import "../css/app.css";
+import ShopList from "./components/ShopList";
+
 axios.defaults.baseURL = "http://192.168.1.4:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
@@ -41,8 +43,9 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
+                    <Route path="/test" element={<ShopList />} />
                     <Route
-                        path="/android_asset/index.html"
+                        path="/"
                         element={<ProductList data={data} setData={setData} />}
                     />
                     <Route
