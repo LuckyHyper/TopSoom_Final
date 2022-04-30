@@ -4,7 +4,7 @@ import Navbar from "./Navbar/Navbar";
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
 import { Box, Image, Text, Stack } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import axios from "axios";
 import Aos from "aos";
@@ -15,6 +15,10 @@ function PriceList(props) {
     const barcode = location.state?.barcode;
     const product_name = location.state?.product_name;
     const [search, setSearch] = useState([]);
+    const [product, setProduct] = useState({
+        product_name: product_name,
+        product_price: 0.450
+    });
 
     useEffect(async () => {
         Aos.init();
@@ -22,7 +26,6 @@ function PriceList(props) {
             .get(`/api/price?barcode=${barcode}`)
 
             .then((res) => {
-                console.log(res.data[0].price);
                 props.setData(res.data);
             })
 
@@ -38,6 +41,18 @@ function PriceList(props) {
 
             .catch((err) => console.log(err));
     };
+    const addShopList = () => {
+        return axios
+            .post(`/api/shop-list`, product)
+
+            .then((res) => {
+                if (res.data.status === 200){
+                    console.log('workedd');
+                }
+            })
+
+            .catch((err) => console.log(err));
+    }
 
     return (
         <Stack bgColor="#fff" width="100%" height="100vh">
@@ -80,12 +95,12 @@ function PriceList(props) {
                         pl={5}
                         pr={7}
                     >
-                        {product_name ? product_name : <h1>test</h1>}
+                        {product_name }
                     </Text>
                     <Text fontSize="20px">
-                        <Link to="/">
+                        <button onClick={addShopList}>
                             <BsFillCartPlusFill />
-                        </Link>
+                        </button>
                     </Text>
                 </Box>
 

@@ -14,7 +14,7 @@ import axios from "axios";
 import "../css/app.css";
 import ShopList from "./components/ShopList";
 
-axios.defaults.baseURL = "http://192.168.1.4:8000";
+axios.defaults.baseURL = "http://192.168.1.14:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
@@ -43,14 +43,18 @@ function App() {
         <ChakraProvider>
             <Router>
                 <Routes>
-                    <Route path="/test" element={<ShopList />} />
                     <Route
+                        exact
                         path="/"
                         element={<ProductList data={data} setData={setData} />}
                     />
                     <Route
                         path="/price-list"
                         element={<PriceList data={data} setData={setData} />}
+                    />
+                    <Route
+                        path="/shop-list"
+                        element={<ShopList data={data} setData={setData} />}
                     />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />

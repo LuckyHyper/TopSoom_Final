@@ -6,9 +6,20 @@ import {
 } from "react-icons/io";
 import { BsTrash } from "react-icons/bs";
 
-export default function ShopCard() {
+export default function ShopItem(props) {
     const [num, setNum] = useState(1);
     const [checkbox, setCheckbox] = useState(false);
+
+    const removeItem = async () => {
+        return await axios
+            .delete(`/api/shop-list`)
+
+            .then((res) => {
+                
+            })
+
+            .catch((err) => console.log(err));
+    };
 
     return (
         <Box d="flex" p={1} m={0.1} ml={2}>
@@ -36,8 +47,8 @@ export default function ShopCard() {
                 justifyContent="space-between"
             >
                 <Box>
-                    <Text>Product Name</Text>
-                    <Text>Price</Text>
+                    <Text textDecoration={checkbox && 'line-through'} > {props.product_name} </Text>
+                    <Text>{props.price}</Text>
                 </Box>
                 <Box
                     d="flex"
@@ -52,7 +63,7 @@ export default function ShopCard() {
                             </Text>
                         </button>
                     ) : (
-                        <button>
+                        <button onClick={removeItem}>
                             <Text fontSize="17px" pr={1.5} pl={1.5}>
                                 <BsTrash />
                             </Text>
