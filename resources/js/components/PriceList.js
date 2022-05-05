@@ -16,10 +16,12 @@ function PriceList(props) {
     const price = location.state?.price;
     const product_name = location.state?.product_name;
     const [search, setSearch] = useState([]);
-    const [product, setProduct] = useState({
+    const [number, setNumber]= useState(0);
+
+    const product = {
         product_name: product_name,
         product_price: price,
-    });
+    };
 
     useEffect(async () => {
         Aos.init();
@@ -31,7 +33,7 @@ function PriceList(props) {
             })
 
             .catch((err) => console.log(err));
-    }, []);
+    }, [number]);
     const ProductsByName = async () => {
         return await axios
             .get(`/api/product?product_name=${search}`)
@@ -48,7 +50,8 @@ function PriceList(props) {
 
             .then((res) => {
                 if (res.data.status === 200) {
-                    console.log(res.data);
+                    setNumber(number+1);
+                    console.log(number);
                 }
             })
 
@@ -58,7 +61,7 @@ function PriceList(props) {
     return (
         <div>
         <Stack bgColor="#fff" width="100%" height="100vh">
-            <Navbar />
+            <Navbar number={number}/>
             <div data-aos="slide-down" data-aos-duration="1000">
                 <Search setSearch={setSearch} ProductsByName={ProductsByName} />
             </div>
@@ -120,7 +123,8 @@ function PriceList(props) {
                                     pb={1}
                                     mb={4}
                                     width="100%"
-                                    bgColor="#FB9300"
+                                    border="1.5px solid #FB9300"
+                                    boxShadow="1px 1px 2px #FB9300 "
                                     display="flex"
                                     justifyContent="space-between"
                                     borderRadius="25px"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import {
     IoIosRemoveCircleOutline,
@@ -19,6 +19,7 @@ export default function ShopItem(props) {
             .catch((err) => console.log(err));
             
     };
+
 
     return (
         <Box d="flex" p={1} m={0.1} ml={2}>

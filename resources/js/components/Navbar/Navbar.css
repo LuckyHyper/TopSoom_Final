@@ -83,13 +83,13 @@ ul.MobileLinksWrapper {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #343F56; /*#8c8c8c; */
+    background-color: #FB9300; /*#8c8c8c; */
 }
 
 li.MobileLinkItem {
     width: 100%;
     padding: 0.5rem 15%;
-    color: #fff;
+    color: #343F56;
     font-weight: 500;
     font-size: 16px;
     display: flex;
@@ -102,7 +102,7 @@ a.MobileLink {
     font-size: inherit;
     font-family: system-ui;
     margin-left: 1rem;
-    border-bottom: 2px solid #fff;
+    border-bottom: 3px solid #343F56;
 }
 
 div.Marginer {

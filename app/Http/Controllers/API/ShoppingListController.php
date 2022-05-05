@@ -12,8 +12,8 @@ class ShoppingListController extends Controller
 {
     public function add_item(Request $request){
         $id = Auth::user()->id;
-        //$product = ShoppingList::where('$request->product_name', '=', 'Fell Warda')->first();
-      //  if ($product === null) {
+        $product = ShoppingList::where('product_id', '=', $request->product_name)->where('user_id','=',$id)->first();
+        if ($product === null) {
             $shoplist = ShoppingList::create([
                 'user_id' => $id,
                 'product_id' => $request->product_name,
@@ -23,15 +23,13 @@ class ShoppingListController extends Controller
                 'status' => 200,
                 'message'=>'Added Successfully',
                 'request' => $request->product_price
-            ]);
-     /*   }else {
-            
-            return response()->json([
-                'status' => 200,
-                'message'=>'Added Failed'
             ]); 
-            
-        } */
+        }else{
+                return response()->json([
+                    'message'=>'Failed ...',
+                    $product
+                ]);
+        }
     }
     
     public function get_items(Request $request){
@@ -48,9 +46,9 @@ class ShoppingListController extends Controller
             'message' => 'removed Successfully'
         ]);
     }
-    public function delete_all($id){
-        //$id = Auth::user()->id;
-        $items=ShoppingList::select('*')->where('user_id','=','$id')->delete();
+    public function delete_all(){
+        $id = Auth::user()->id;
+        $items=ShoppingList::select('*')->where('user_id','=',$id)->delete();
  
         return response()->json([
             'status' => 200,

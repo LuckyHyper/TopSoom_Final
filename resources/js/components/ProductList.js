@@ -10,6 +10,7 @@ import "aos/dist/aos.css";
 
 export default function ProductList(props) {
     const [search, setSearch] = useState([]);
+    const [number, setNumber]= useState(0);
     const ProductsByName = async () => {
         
         return await axios
@@ -28,7 +29,7 @@ export default function ProductList(props) {
 
     return (
         <div>
-            <Navbar />
+            <Navbar number={number} />
             <div data-aos="slide-down" data-aos-duration="1200">
                 <Search
                     setSearch={setSearch}

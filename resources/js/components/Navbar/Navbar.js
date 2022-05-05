@@ -1,10 +1,9 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import { useMediaQuery } from "react-responsive";
 import { Logo } from "../Logo/Logo";
-import { RiShoppingCartLine } from "react-icons/ri";
 import SignIn from "./SignIn";
 import NavLinks from "./NavLinks";
+import ShoppingLogo from "./ShoppingLogo"
 import { MobileNavLinks } from "./MobileNavLinks";
 import "./Navbar.css";
 
@@ -30,22 +29,20 @@ export default function Navbar(props) {
                     </div>
                     <div className="RightSection">
                         {!isMobile && <SignIn />}
-                        {isMobile && <MobileNavLinks />}
                     </div>
                 </div>
             )} 
             {isMobile && (
                 <div className="NavbarContainer">
                     <div className="LeftSection">
-                        {!isMobile && <SignIn />}
                         {isMobile && <MobileNavLinks />}
                     </div>
                     <div className="MiddleSection">
                              <Logo />
                     </div>
-                    <Link to="/shop-list" className="RightSection">
-                        <RiShoppingCartLine />
-                    </Link>
+                    <div className="RightSection">
+                        <ShoppingLogo number={props.number} />
+                    </div>
                 </div>
             )} 
         </div>

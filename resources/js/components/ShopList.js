@@ -9,6 +9,8 @@ export default function ShopList() {
     const [list, setList] = useState();
     const [reload, setReload] = useState();
     const [somme, setSomme] = useState(0);
+    const [sum_list, setSumList] = useState();
+
 
     useEffect(() => {
         
@@ -23,22 +25,22 @@ export default function ShopList() {
             .catch((err) => console.log(err));
     }, [reload]);
     const deleteAll = async () => {
-        axios
-        .delete(`/api/delete-all-items/1`)
+        setReload(reload+1);
+        await axios
+        .delete(`/api/delete-all-items/`)
         .then((res) => {
             console.log(list);
         })
 
         .catch((err) => console.log(err));
     }
-    const CalculateSomme = () => {
-        if(list != undefined){
-            list.map((item) => {
-               setSomme(somme + item.product_price );
-            })
-            return somme;
-        }
-    }
+    const bottom_line = () => {
+        let sum =0;
+        list.map((x) => {
+            sum += x.product_price * x.quantity;
+        })
+        setSomme(sum);
+    } 
 
     return (
         <Box marginBottom={16}>
@@ -73,7 +75,7 @@ export default function ShopList() {
                     </Text>
                 </Box>
                 <Box >
-                <Button  m={1} p={2} variant='solid' bgColor="#FB9300" size="sm" onClick={deleteAll} _hover={{ bgColor:"#FB9300" }}>
+                <Button  m={1} p={2} variant='solid' color="#f2f2f2" bgColor="#FB9300" size="sm" onClick={deleteAll} _hover={{ bgColor:"#FB9300" }}>
                     Clear All
                 </Button>
             </Box>
@@ -93,6 +95,7 @@ export default function ShopList() {
                                 price={item.product_price}
                                 itemId={item.id}
                                 setReload={setReload}
+                                setSumList={setSumList}
                             />
                         );
                     })}
@@ -102,7 +105,7 @@ export default function ShopList() {
                     {somme}
                 </Text>
 
-                <Button bgColor="#FB9300" size="sm" onClick={CalculateSomme}>
+                <Button bgColor="#FB9300" size="sm" color="#f2f2f2" onClick={bottom_line}>
                     Calculate
                 </Button>
             </Box>

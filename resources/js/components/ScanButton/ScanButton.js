@@ -8,7 +8,7 @@ export default function ScanButton() {
     return (
         <div className="scan-btn">
             <Link to="/scan">
-                <Button bgColor="rgba(0, 0, 0, 0.75)" size="md" p={3.5} borderRadius="44%" color="#fff" fontSize="1.9rem">
+                <Button bgColor="#343F56" size="md" p={3.5} borderRadius="44%" color="#fff" fontSize="1.9rem">
                     <BiBarcodeReader />
                 </Button>
             </Link>
