@@ -31,7 +31,7 @@ function Card(props) {
                     <BiPlus />
                 </Text>
 
-                <Link to="/price-list" state={{barcode : props.barcode, product_name: props.product_name}}>
+                <Link to="/price-list" state={{barcode : props.barcode, product_name: props.product_name, price: props.price }}>
 
                     <Text fontSize="18px">
                         <FiArrowRight />

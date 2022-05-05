@@ -17,6 +17,7 @@ export default function ProductList(props) {
 
             .then((res) => {
                 props.setData(res.data);
+                console.log(res.data);
             })
 
             .catch((err) => console.log(err));
@@ -38,7 +39,7 @@ export default function ProductList(props) {
                 { props.data != undefined &&
                                 props.data.map((item, key) => {
                                     return (
-                                        <Card product_name={item.product_name} barcode={item.barcode}/>
+                                        <Card product_name={item.product_name} barcode={item.barcode} price={item.price[0].price}/>
                                     )
                                 })
                 }

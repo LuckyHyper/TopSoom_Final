@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Link } from 'react-router-dom';
 import { useMediaQuery } from "react-responsive";
 import { Logo } from "../Logo/Logo";
+import { RiShoppingCartLine } from "react-icons/ri";
 import SignIn from "./SignIn";
 import NavLinks from "./NavLinks";
 import { MobileNavLinks } from "./MobileNavLinks";
@@ -39,11 +41,11 @@ export default function Navbar(props) {
                         {isMobile && <MobileNavLinks />}
                     </div>
                     <div className="MiddleSection">
-                        {!isMobile && <NavLinks />}
+                             <Logo />
                     </div>
-                    <div className="RightSection">
-                        <Logo />
-                    </div>
+                    <Link to="/shop-list" className="RightSection">
+                        <RiShoppingCartLine />
+                    </Link>
                 </div>
             )} 
         </div>

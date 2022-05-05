@@ -11,19 +11,3 @@
     padding: 18px;
 }
 
-.add-btn,
-.add-btn::after {
-    display: block;
-    width: 24px;
-    height: 5px;
-    position: relative;
-    background: #fff;
-    border-radius: 5px;
-}
-.add-btn::after {
-    content: "";
-    position: absolute;
-}
-.add-btn::after {
-    transform: rotate(90deg);
-}

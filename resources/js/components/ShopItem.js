@@ -9,16 +9,15 @@ import { BsTrash } from "react-icons/bs";
 export default function ShopItem(props) {
     const [num, setNum] = useState(1);
     const [checkbox, setCheckbox] = useState(false);
-
-    const removeItem = async () => {
-        return await axios
-            .delete(`/api/shop-list`)
-
+  
+    const deleteItem = async () => {
+        props.setReload(props.itemId);
+          await axios
+            .delete(`/api/delete-item/${props.itemId}`)
             .then((res) => {
-                
             })
-
             .catch((err) => console.log(err));
+            
     };
 
     return (
@@ -63,7 +62,7 @@ export default function ShopItem(props) {
                             </Text>
                         </button>
                     ) : (
-                        <button onClick={removeItem}>
+                        <button onClick={deleteItem}>
                             <Text fontSize="17px" pr={1.5} pl={1.5}>
                                 <BsTrash />
                             </Text>
