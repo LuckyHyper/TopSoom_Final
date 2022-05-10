@@ -10,7 +10,6 @@ import "aos/dist/aos.css";
 
 export default function ProductList(props) {
     const [search, setSearch] = useState([]);
-    const [number, setNumber]= useState(0);
     const ProductsByName = async () => {
         
         return await axios

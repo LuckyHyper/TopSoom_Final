@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-import Navbar from "../Navbar/Navbar";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
@@ -39,13 +38,12 @@ function Register() {
 
     return (
         <div>
-            <div id="Body">
 
                 <div id="container">
                     <form id="loginform" onSubmit={registerSubmit}>
                         <h2 id="headerTitle">Register</h2>
                         <div className="row">
-                            <label>Username</label>
+                            <label class="register">Username</label>
                             <input
                                 placeholder="Enter your username"
                                 type="text"
@@ -54,7 +52,7 @@ function Register() {
                                 onChange={handleChange}
                             />
                             <span>{register.error_list.email}</span>
-                            <label>Name</label>
+                            <label class="register">Name</label>
                             <input
                                 placeholder="Enter your Email"
                                 type="text"
@@ -62,7 +60,7 @@ function Register() {
                                 value={register.email}
                                 onChange={handleChange}
                             />
-                            <label>Password</label>
+                            <label class="register">Password</label>
                             <input
                                 placeholder="Enter your password"
                                 type="password"
@@ -78,7 +76,6 @@ function Register() {
                     </form>
                 </div>
             </div>
-        </div>
     );
 }
 

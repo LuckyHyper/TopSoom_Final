@@ -28,6 +28,7 @@ export default function Navbar(props) {
                         {!isMobile && <NavLinks />}
                     </div>
                     <div className="RightSection">
+                         <ShoppingLogo shopNum={props.shopNum} setShopNum={props.setShopNum} />
                         {!isMobile && <SignIn />}
                     </div>
                 </div>

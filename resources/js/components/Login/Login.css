@@ -18,12 +18,7 @@
 }
 
 #loginform {
-    max-width: 500px;
-    min-width: 300px;
-    max-height: 700px;
-    width: 30%;
-    height: 60%;
-    margin: 100px auto;
+    margin: 60px auto;
     background-color: #ffffff;
     border-radius: 25px;
 }
@@ -40,7 +35,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
     max-width: 100%;
 }
 
@@ -50,9 +44,11 @@
     border: none;
     font-size: 1.3rem;
     padding-left: 1.5rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     box-shadow: inset 0px -3px 0px 0px rgba(187, 187, 187, 0.2);
     transition: box-shadow 0.2s ease-in;
+    border-radius: 25px;
 }
 
 .row input:focus {
@@ -72,9 +68,9 @@
 
 .row label {
     align-self: start;
-    padding-left: 4.5rem;
-    padding-bottom: 0.5rem;
-    color: rgba(187, 187, 187, 0.9);
+    padding-left: 3rem;
+    margin-top: 8px;
+    color: #343F56;
 }
 
 .row button {
@@ -84,12 +80,7 @@
     font-size: 1.3rem;
     color: white;
     font-weight: 700;
-    background: rgb(34, 193, 195);
-    background: linear-gradient(
-        90deg,
-        rgba(34, 193, 195, 1) 0%,
-        rgba(253, 187, 45, 1) 100%
-    );
+    background-color: #FB9300;
     border: 0px;
     cursor: pointer;
     transition: opacity 0.25s ease-out;

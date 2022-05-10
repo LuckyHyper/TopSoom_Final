@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
-
-import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
     let navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
     const [login, setLogin] = useState({
         email: "",
         password: "",
@@ -47,7 +44,6 @@ function Login() {
     return (
         <div>
             <div id="Body">
-                <Navbar />
                 <div id="container">
                     <form id="loginform" onSubmit={loginSubmit}>
                         <h2 id="headerTitle">Login</h2>
