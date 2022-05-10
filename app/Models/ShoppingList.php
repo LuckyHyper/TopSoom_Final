@@ -12,7 +12,8 @@ class ShoppingList extends Model
     protected $fillable= [
         'user_id',
         'product_id',
-        'product_price'
+        'product_price',
+        'quantity'
     ];
     
     public function user()

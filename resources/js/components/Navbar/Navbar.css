@@ -83,13 +83,13 @@ ul.MobileLinksWrapper {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #FB9300; /*#8c8c8c; */
+    background-color: #343F56; /*#8c8c8c; */
 }
 
 li.MobileLinkItem {
     width: 100%;
     padding: 0.5rem 15%;
-    color: #343F56;
+    color: #FB9300;
     font-weight: 500;
     font-size: 16px;
     display: flex;

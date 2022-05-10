@@ -1,41 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import {
     IoIosRemoveCircleOutline,
     IoIosAddCircleOutline,
 } from "react-icons/io";
 import { BsTrash } from "react-icons/bs";
+import axios from "axios";
 
 export default function ShopItem(props) {
-    const [num, setNum] = useState(1);
+    const [quantity, setQuantity] = useState(props.quantity);
     const [checkbox, setCheckbox] = useState(false);
+    const itemId= props.itemId;
+
+     useEffect(() => { 
+
+        props.setReload2(quantity);
+        axios
+            .put(`/api/item-quantity`,{itemId,quantity})
+        
+    },[quantity]); 
   
     const deleteItem = async () => {
         props.setReload(props.itemId);
+        props.setSomme(0);
           await axios
             .delete(`/api/delete-item/${props.itemId}`)
             .then((res) => {
             })
             .catch((err) => console.log(err));
             
+        props.setShopNum(props.shopNum-1);
+            
     };
-
 
     return (
         <Box d="flex" p={1} m={0.1} ml={2}>
             <Box d="flex" alignItems="center" mr={3}>
                 <Box
-                    border="1px solid black"
+                    border="1px solid #343F56"
                     p={0.5}
                     boxSize="15px"
-                    borderRadius="3px"
+                    borderRadius="6px"
                     onClick={() => {
                         if (checkbox == false) setCheckbox(true);
                         else setCheckbox(false);
                     }}
                 >
                     {checkbox && (
-                        <Box bgColor="black" width="100%" height="100%" />
+                        <Box bgColor="#343F56" borderRadius="6px" width="100%" height="100%" />
                     )}
                 </Box>
             </Box>
@@ -45,10 +57,11 @@ export default function ShopItem(props) {
                 height="50px"
                 d="flex"
                 justifyContent="space-between"
+                borderRadius="15px"
             >
-                <Box>
-                    <Text textDecoration={checkbox && 'line-through'} > {props.product_name} </Text>
-                    <Text>{props.price}</Text>
+                <Box pl={4}>
+                    <Text textDecoration={checkbox && 'line-through'} textDecorationColor="#343F56" color="#343F56" > {props.product_name} </Text>
+                    <Text display="flex" justifyContent="center" color="#343F56" >{props.price}</Text>
                 </Box>
                 <Box
                     d="flex"
@@ -56,22 +69,22 @@ export default function ShopItem(props) {
                     p={1}
                     pr={2}
                 >
-                    {num > 1 ? (
-                        <button onClick={() => setNum(num - 1)}>
-                            <Text fontSize="18px" pr={1.5} pl={1.5}>
+                    {quantity > 1 ? (
+                        <button onClick={ () => setQuantity(quantity - 1) }>
+                            <Text color="#343F56" fontSize="18px" pr={1.5} pl={1.5}>
                                 <IoIosRemoveCircleOutline />
                             </Text>
                         </button>
                     ) : (
                         <button onClick={deleteItem}>
-                            <Text fontSize="17px" pr={1.5} pl={1.5}>
+                            <Text color="#343F56" fontSize="17px" pr={1.5} pl={1.5}>
                                 <BsTrash />
                             </Text>
                         </button>
                     )}
-                    <Text>{num}</Text>
-                    <button onClick={() => setNum(num + 1)}>
-                        <Text fontSize="18px" pr={1.5} pl={1.5}>
+                    <Text color="#343F56" >{quantity}</Text>
+                    <button onClick={ () => setQuantity(quantity + 1) }>
+                        <Text color="#343F56" fontSize="18px" pr={1.5} pl={1.5}>
                             <IoIosAddCircleOutline />
                         </Text>
                     </button>

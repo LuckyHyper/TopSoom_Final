@@ -41,7 +41,7 @@ export default function Navbar(props) {
                              <Logo />
                     </div>
                     <div className="RightSection">
-                        <ShoppingLogo number={props.number} />
+                        <ShoppingLogo shopNum={props.shopNum} setShopNum={props.setShopNum} />
                     </div>
                 </div>
             )} 

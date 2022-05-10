@@ -29,7 +29,6 @@ export default function ProductList(props) {
 
     return (
         <div>
-            <Navbar number={number} />
             <div data-aos="slide-down" data-aos-duration="1200">
                 <Search
                     setSearch={setSearch}

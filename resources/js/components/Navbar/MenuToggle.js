@@ -27,7 +27,7 @@ export function MenuToggle({ toggle, isOpen }) {
                         },
                         open: {
                             d: "M 3 16.5 L 17 2.5",
-                            stroke: "hsl(0, 0%, 18%)",
+                            stroke: "#FB9300",
                         },
                     }}
                     transition={transition}
@@ -53,7 +53,7 @@ export function MenuToggle({ toggle, isOpen }) {
                         },
                         open: {
                             d: "M 3 2.5 L 17 16.346",
-                            stroke: "hsl(0, 0%, 18%)",
+                            stroke: "#FB9300",
                         },
                     }}
                     transition={transition}

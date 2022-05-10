@@ -5,47 +5,51 @@ import { Link } from "react-router-dom";
 import ScanButton from "./ScanButton/ScanButton";
 import ShopItem from "./ShopItem";
 
-export default function ShopList() {
-    const [list, setList] = useState();
+export default function ShopList(props) {
+    const [list, setList] = useState([]);
     const [reload, setReload] = useState();
     const [somme, setSomme] = useState(0);
-    const [sum_list, setSumList] = useState();
-
+    const [x, setX] = useState(0);
+    const [reload2, setReload2] = useState(1);
 
     useEffect(() => {
-        
+        setSomme(0);
         axios
             .get(`/api/shop-list`)
 
             .then((res) => {
-                setList(res.data);
+                setList(res.data);    
                 console.log(res.data);
             })
-
             .catch((err) => console.log(err));
-    }, [reload]);
+            
+    }, [reload,reload2]);
+
     const deleteAll = async () => {
         setReload(reload+1);
         await axios
         .delete(`/api/delete-all-items/`)
         .then((res) => {
-            console.log(list);
+            props.setShopNum(0);
+            setSomme(0);
         })
 
         .catch((err) => console.log(err));
     }
     const bottom_line = () => {
-        let sum =0;
-        list.map((x) => {
-            sum += x.product_price * x.quantity;
+        let s=0;
+        let z= 0;
+        list.map((y) => {
+            s = (y.product_price*y.quantity);
+             z = z +s;
+            setSomme(z);
+            
         })
-        setSomme(sum);
     } 
 
     return (
         <Box marginBottom={16}>
             <Box height="4rem"></Box>
-            
             <Box
                 bgColor="#f2f2f2"
                 d="flex"
@@ -55,6 +59,7 @@ export default function ShopList() {
                 justifyContent="space-between"
                 position="fixed"
                 width="100%"
+                zIndex="999"
             >
                 <Box  p={1}>
                     <Link to="/">
@@ -93,16 +98,21 @@ export default function ShopList() {
                             <ShopItem
                                 product_name={item.product_id}
                                 price={item.product_price}
+                                quantity={item.quantity}
                                 itemId={item.id}
                                 setReload={setReload}
-                                setSumList={setSumList}
+                                setShopNum={props.setShopNum}
+                                shopNum={props.shopNum}
+                                setSomme={setSomme}
+                                setReload2={setReload2}
+
                             />
                         );
                     })}
             </Box>
             <Box display="flex" justifyContent="center" p={3}>
-                <Text mr={5} borderBottom="1px solid black">
-                    {somme}
+                <Text mr={5} borderBottom="1px solid #343F56" color="#343F56">
+                    {somme} dt
                 </Text>
 
                 <Button bgColor="#FB9300" size="sm" color="#f2f2f2" onClick={bottom_line}>

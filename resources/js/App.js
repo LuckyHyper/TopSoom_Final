@@ -8,11 +8,11 @@ import ProductList from "./components/ProductList";
 import Scanner from "./components/Scanner/Scanner";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Admin from "./components/Admin";
 import axios from "axios";
 import "../css/app.css";
 import ShopList from "./components/ShopList";
+import Navbar from "./components/Navbar/Navbar";
 
 axios.defaults.baseURL = "http://192.168.1.4:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -27,21 +27,12 @@ axios.interceptors.request.use(function (config) {
 
 function App() {
     const [data, setData] = useState(null);
-
-    const showProduct = async (barcode) => {
-        return await axios
-            .get(`/api/price?barcode=${barcode}`)
-
-            .then((res) => {
-                setData(res.data);
-            })
-
-            .catch((err) => console.log(err));
-    };
-
+    const [shopNum, setShopNum] = useState(0);
+    
     return (
         <ChakraProvider>
             <Router>
+                <Navbar shopNum={shopNum} setShopNum={setShopNum} />
                 <Routes>
                     <Route
                         exact
@@ -50,20 +41,16 @@ function App() {
                     />
                     <Route
                         path="/price-list"
-                        element={<PriceList data={data} setData={setData} />}
+                        element={<PriceList data={data} setData={setData} setShopNum={setShopNum} shopNum={shopNum} />}
                     />
                     <Route
                         path="/shop-list"
-                        element={<ShopList data={data} setData={setData} />}
+                        element={<ShopList data={data} setData={setData} setShopNum={setShopNum} shopNum={shopNum} />}
                     />
                     <Route path="/login" element={<Login />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/scan" element={<Scanner />} />
-                    <Route
-                        path="/ProductDetails"
-                        element={<ProductDetails />}
-                    />
                 </Routes>
             </Router>
         </ChakraProvider>

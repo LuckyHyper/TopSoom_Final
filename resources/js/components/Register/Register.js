@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import "./Register";
+import "./Register.css";
 
 function Register() {
     const navigate = useNavigate();
@@ -40,7 +40,6 @@ function Register() {
     return (
         <div>
             <div id="Body">
-                <Navbar />
 
                 <div id="container">
                     <form id="loginform" onSubmit={registerSubmit}>

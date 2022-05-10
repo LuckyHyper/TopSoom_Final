@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import axios from "axios";
 import Aos from "aos";
+import swal from "sweetalert";
 import "aos/dist/aos.css";
 
 function PriceList(props) {
@@ -50,8 +51,9 @@ function PriceList(props) {
 
             .then((res) => {
                 if (res.data.status === 200) {
-                    setNumber(number+1);
-                    console.log(number);
+                    props.setShopNum(props.shopNum+1);
+                }else{
+                    console.log('arwaaaaa7');
                 }
             })
 
@@ -61,7 +63,6 @@ function PriceList(props) {
     return (
         <div>
         <Stack bgColor="#fff" width="100%" height="100vh">
-            <Navbar number={number}/>
             <div data-aos="slide-down" data-aos-duration="1000">
                 <Search setSearch={setSearch} ProductsByName={ProductsByName} />
             </div>

@@ -9,7 +9,8 @@
 #Body {
     font-family: "work sans";
     width: 100%;
-    position: fixed;
+    height: 100%;
+    background-color: aqua;
 }
 
 #container {
@@ -21,10 +22,11 @@
     min-width: 300px;
     max-height: 700px;
     width: 30%;
-    height: 60%;
-    margin: 100px auto;
+    height: 80%;
+    margin: 5rem auto;
     background-color: #ffffff;
     border-radius: 25px;
+    
 }
 
 #headerTitle {

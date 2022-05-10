@@ -17,7 +17,7 @@ class ShoppingListController extends Controller
             $shoplist = ShoppingList::create([
                 'user_id' => $id,
                 'product_id' => $request->product_name,
-                'product_price' => $request->product_price,
+                'product_price' => $request->product_price
              ]); 
              return response()->json([
                 'status' => 200,
@@ -32,7 +32,7 @@ class ShoppingListController extends Controller
         }
     }
     
-    public function get_items(Request $request){
+    public function get_items(){
         $id = Auth::user()->id;
         $items = ShoppingList::select('*')->where('user_id','=',"$id")->get();
          return response()->json(ShoppingListResource::collection($items));
@@ -55,4 +55,22 @@ class ShoppingListController extends Controller
             'message' => 'removed Successfully'
         ]);
     }
+
+    public function items_length(){
+        $id = Auth::user()->id;
+        $items=ShoppingList::select('*')->where('user_id','=',$id)->count();
+ 
+        return response()->json($items);
+    }
+    public function update_quantity(Request $request){
+        
+        $item = ShoppingList::find($request->itemId);
+        $item->quantity = $request->quantity;
+        $item->save();
+        return response()->json([
+            'message' => 'quantity updated'
+        ]);
+    }
+   
+    
 }

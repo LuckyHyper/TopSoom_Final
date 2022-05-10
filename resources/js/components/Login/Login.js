@@ -14,7 +14,6 @@ function Login() {
         password: "",
         error_list: [],
     });
-    const handleShowClick = () => setShowPassword(!showPassword);
     const handleChange = (e) => {
         console.log('test');
         setLogin({ ...login, [e.target.name]: e.target.value });
