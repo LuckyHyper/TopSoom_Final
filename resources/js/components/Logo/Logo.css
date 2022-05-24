@@ -1,6 +1,7 @@
 div.LogoWrapper {
     display: flex;
     align-items: center;
+    text-decoration:none;
 
 }
 
@@ -9,5 +10,4 @@ h2.LogoText {
     padding-left: 10px;
     color: #222;
     font-weight: 500;
-    font-family: cursive;
 }

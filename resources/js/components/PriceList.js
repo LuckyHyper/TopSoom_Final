@@ -16,6 +16,7 @@ function PriceList(props) {
     const barcode = location.state?.barcode;
     const price = location.state?.price;
     const product_name = location.state?.product_name;
+    const image = location.state?.image;
     const [search, setSearch] = useState([]);
     const [number, setNumber]= useState(0);
 
@@ -74,13 +75,11 @@ function PriceList(props) {
                 width="100vw"
                 height="14rem"
             >
-                <div data-aos="zoom-out" data-aos-duration="2000">
                     <Image
-                        boxSize="100px"
-                        src="https://bit.ly/dan-abramov"
+                        boxSize="220px"
+                        src={image}
                         alt="Dan Abramov"
                     />
-                </div>
             </Box>
             <Box p={6} pr={4} width="100vw" bgColor="#f2f2f2" borderTopRadius="25px">
                 <Box

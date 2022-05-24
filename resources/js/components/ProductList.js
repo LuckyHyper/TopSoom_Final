@@ -38,7 +38,7 @@ export default function ProductList(props) {
                 { props.data != undefined &&
                                 props.data.map((item, key) => {
                                     return (
-                                        <Card product_name={item.product_name} barcode={item.barcode} price={item.price[0].price}/>
+                                        <Card product_name={item.product_name} barcode={item.barcode} price={item.price[0].price} image={item.image}/>
                                     )
                                 })
                 }

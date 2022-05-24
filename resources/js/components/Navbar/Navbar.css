@@ -132,6 +132,8 @@ button.RegisterButton {
     transition: all 240ms ease-in-out;
     cursor: pointer;
     margin-right: 10px;
+    margin-left: 1rem ;
+
 
     /* &:hover {
         background-color: #00c9ff;
@@ -167,14 +169,17 @@ button.LogoutButton {
     border: 2px solid #FB9300;
     transition: all 240ms ease-in-out;
     cursor: pointer;
+    margin-left: 1rem;
 }
-bu
 button.LoginButton:hover {
     color: #fff;
     background-color: #FB9300;
 }
 button.LoginButton :not(:last-of-type) {
     margin-right: 7px;
+}
+a.shop-logo {
+    margin-top: 0.3rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -189,6 +194,7 @@ button.LoginButton :not(:last-of-type) {
     }
     button.RegisterButton{
         padding: 0.5rem 2rem;
+        margin-left: 0;
         color: #343F56;
     }
     button.LoginButton{
@@ -199,6 +205,9 @@ button.LoginButton :not(:last-of-type) {
     button.LogoutButton{
         padding: 0.5rem 0.9rem;
         color: #fff;
+    }
+    a.shop-logo {
+        margin-top: 0;
     }
 
 }

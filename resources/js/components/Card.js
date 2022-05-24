@@ -31,7 +31,7 @@ function Card(props) {
                     <BiPlus />
                 </Text>
 
-                <Link to="/price-list" state={{barcode : props.barcode, product_name: props.product_name, price: props.price }}>
+                <Link to="/price-list" state={{barcode : props.barcode, product_name: props.product_name, price: props.price, image: props.image }}>
 
                     <Text fontSize="18px">
                         <FiArrowRight />
@@ -44,7 +44,7 @@ function Card(props) {
                 height="80px"
                 borderRadius={"md"}
                 margin="auto"
-                src=""
+                src={props.image}
                 alt="image"
             />
             <Text

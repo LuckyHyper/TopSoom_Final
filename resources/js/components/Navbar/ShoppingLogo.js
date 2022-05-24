@@ -18,9 +18,9 @@ function ShoppingLogo(props) {
             
     }, []);
     return (
-        <Link to="/shop-list">
+        <Link to="/shop-list" className="shop-logo">
             <Box position="relative" width="1.5rem" height="1.5rem"  >
-                <Box position="absolute" bottom="0" left="0"> 
+                <Box position="absolute" bottom="0" left="0" mt={1}> 
                     <RiShoppingCartLine />
                 </Box>
                 <Box
