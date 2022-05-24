@@ -1,11 +1,11 @@
 import React from "react";
-import "./Logo";
-
+import "./Logo.css";
+import { Link } from 'react-router-dom';
 
 export function Logo() {
     return (
-        <a href='/' className="LogoWrapper">
-            <h2 className="LogoText">TopSoom</h2>
-        </a>
+            <Link to="/" >
+                <h2 className="LogoText">TopSoom</h2>
+            </Link>
     );
 }

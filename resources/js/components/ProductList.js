@@ -24,7 +24,7 @@ export default function ProductList(props) {
     };
     useEffect(() => {
         Aos.init();
-    }, []);
+    }, [props.reload4]);
 
     return (
         <div>

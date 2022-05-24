@@ -39,7 +39,7 @@ export function MobileNavLinks(props) {
                         </a>
                     </li>
                     <div className="Marginer" />
-                    <SignIn setOpen={setOpen}/>
+                    <SignIn setOpen={setOpen} isOpen={isOpen} setReload3={props.setReload3} reload3={props.reload3}/>
                 </ul>
             )}
         </div>

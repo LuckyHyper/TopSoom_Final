@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('product_id');
             $table->bigInteger('barcode');
             $table->string('product_name');
+            $table->string('details');
             $table->string('image');
             $table->timestamps();
         });

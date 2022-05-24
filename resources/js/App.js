@@ -14,7 +14,7 @@ import "../css/app.css";
 import ShopList from "./components/ShopList";
 import Navbar from "./components/Navbar/Navbar";
 
-axios.defaults.baseURL = "http://192.168.1.4:8000";
+axios.defaults.baseURL = "http://192.168.0.142:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
@@ -28,11 +28,12 @@ axios.interceptors.request.use(function (config) {
 function App() {
     const [data, setData] = useState(null);
     const [shopNum, setShopNum] = useState(0);
-    
+    const [reload3, setReload3] = useState(0);
+
     return (
         <ChakraProvider>
             <Router>
-                <Navbar shopNum={shopNum} setShopNum={setShopNum} />
+                <Navbar shopNum={shopNum} setShopNum={setShopNum} reload3={reload3} setReload3={setReload3} />
                 <Routes>
                     <Route
                         exact
@@ -47,7 +48,7 @@ function App() {
                         path="/shop-list"
                         element={<ShopList data={data} setData={setData} setShopNum={setShopNum} shopNum={shopNum} />}
                     />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login setReload3={setReload3} reload3={reload3} />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/scan" element={<Scanner />} />

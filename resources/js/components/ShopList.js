@@ -9,7 +9,7 @@ export default function ShopList(props) {
     const [list, setList] = useState([]);
     const [reload, setReload] = useState();
     const [somme, setSomme] = useState(0);
-    const [x, setX] = useState(0);
+    const [isDisable, setDisable] = useState(true);
     const [reload2, setReload2] = useState(1);
 
     useEffect(() => {
@@ -18,34 +18,32 @@ export default function ShopList(props) {
             .get(`/api/shop-list`)
 
             .then((res) => {
-                setList(res.data);    
+                setList(res.data);
                 console.log(res.data);
             })
             .catch((err) => console.log(err));
-            
-    }, [reload,reload2]);
+    }, [reload, reload2]);
 
     const deleteAll = async () => {
-        setReload(reload+1);
+        setReload(reload + 1);
         await axios
-        .delete(`/api/delete-all-items/`)
-        .then((res) => {
-            props.setShopNum(0);
-            setSomme(0);
-        })
+            .delete(`/api/delete-all-items/`)
+            .then((res) => {
+                props.setShopNum(0);
+                setSomme(0);
+            })
 
-        .catch((err) => console.log(err));
-    }
+            .catch((err) => console.log(err));
+    };
     const bottom_line = () => {
-        let s=0;
-        let z= 0;
+        let s = 0;
+        let z = 0;
         list.map((y) => {
-            s = (y.product_price*y.quantity);
-             z = z +s;
+            s = y.product_price * y.quantity;
+            z = z + s;
             setSomme(z);
-            
-        })
-    } 
+        });
+    };
 
     return (
         <Box marginBottom={16}>
@@ -61,7 +59,7 @@ export default function ShopList(props) {
                 width="100%"
                 zIndex="999"
             >
-                <Box  p={1}>
+                <Box p={1}>
                     <Link to="/">
                         <Text fontSize="30px" p={1} pl={0}>
                             <IoIosArrowBack />
@@ -79,12 +77,20 @@ export default function ShopList(props) {
                         My List
                     </Text>
                 </Box>
-                <Box >
-                <Button  m={1} p={2} variant='solid' color="#f2f2f2" bgColor="#FB9300" size="sm" onClick={deleteAll} _hover={{ bgColor:"#FB9300" }}>
-                    Clear All
-                </Button>
-            </Box>
-                
+                <Box>
+                    <Button
+                        m={1}
+                        p={2}
+                        variant="solid"
+                        color="#f2f2f2"
+                        bgColor="#FB9300"
+                        size="sm"
+                        onClick={deleteAll}
+                        _hover={{ bgColor: "#FB9300" }}
+                    >
+                        Clear All
+                    </Button>
+                </Box>
             </Box>
             <Box
                 display="flex"
@@ -105,7 +111,7 @@ export default function ShopList(props) {
                                 shopNum={props.shopNum}
                                 setSomme={setSomme}
                                 setReload2={setReload2}
-
+                                setDisable={setDisable}
                             />
                         );
                     })}
@@ -114,10 +120,26 @@ export default function ShopList(props) {
                 <Text mr={5} borderBottom="1px solid #343F56" color="#343F56">
                     {somme} dt
                 </Text>
-
-                <Button bgColor="#FB9300" size="sm" color="#f2f2f2" onClick={bottom_line}>
-                    Calculate
-                </Button>
+                {isDisable ? (
+                    <Button
+                        bgColor="#FB9300"
+                        size="sm"
+                        color="#f2f2f2"
+                        onClick={bottom_line}
+                        disabled
+                    >
+                        Calculate
+                    </Button>
+                ) : (
+                    <Button
+                        bgColor="#FB9300"
+                        size="sm"
+                        color="#f2f2f2"
+                        onClick={bottom_line}
+                    >
+                        Calculate
+                    </Button>
+                )}
             </Box>
             <ScanButton></ScanButton>
         </Box>

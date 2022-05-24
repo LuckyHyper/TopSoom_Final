@@ -1,13 +1,17 @@
-div.LogoWrapper {
+a.LogoWrapper {
     display: flex;
     align-items: center;
-
+    color: #343F56;
 }
-
+a:hover {
+    text-decoration: none;
+    color: #343F56;
+}
 h2.LogoText {
     font-size: 16px;
     padding-left: 10px;
-    color: #222;
     font-weight: 500;
     font-family: cursive;
-}
+    text-decoration: none;
+} 
+

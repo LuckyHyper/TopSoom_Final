@@ -14,20 +14,26 @@ function SignIn(props) {
             if (res.data.status === 200) {
                 localStorage.removeItem("auth_token");
                 localStorage.removeItem("auth_name");
+                props.setReload3(props.reload3+1);
                 swal("Success", res.data.message, "success");
                 navigate("/");
             }
         });
     };
+    const handleNavLinks = () => {
+        if (props.isOpen == true){
+            props.setOpen(false)
+        }
+    }
 
     if (!localStorage.getItem("auth_token")) {
         AuthButtons = (
             <div className="SignInContainer">
                 <Link to="/register">
-                    <button className="RegisterButton" onClick={() => props.setOpen(false)}>Register</button>
+                    <button className="RegisterButton" onClick={handleNavLinks}>Register</button>
                 </Link>
                 <Link to="/login">
-                    <button className="LoginButton" onClick={() => props.setOpen(false)} >Login</button>
+                    <button className="LoginButton" onClick={handleNavLinks} >Login</button>
                 </Link>
             </div>
         );
