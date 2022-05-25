@@ -53,8 +53,6 @@ function PriceList(props) {
             .then((res) => {
                 if (res.data.status === 200) {
                     props.setShopNum(props.shopNum+1);
-                }else{
-                    console.log('arwaaaaa7');
                 }
             })
 

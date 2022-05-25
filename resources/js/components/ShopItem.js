@@ -54,20 +54,21 @@ export default function ShopItem(props) {
             <Box
                 bgColor="#e6e6e6"
                 width="100%"
-                height="50px"
+                minHeight="50px"
                 d="flex"
-                justifyContent="space-between"
                 borderRadius="15px"
+                justifyContent="space-between"
             >
-                <Box pl={4}>
-                    <Text textDecoration={checkbox && 'line-through'} textDecorationColor="#343F56" color="#343F56" > {props.product_name} </Text>
-                    <Text display="flex" justifyContent="center" color="#343F56" >{props.price}</Text>
+                <Box p={1} pl={4} width="70%" >
+                    <Text textDecoration={checkbox && 'line-through'} textDecorationColor="#343F56" color="#343F56" fontSize="15px" > {props.product_name} </Text>
+                    <Text display="flex" justifyContent="left" color="#343F56" ml="1.5rem" >{props.price}</Text>
                 </Box>
                 <Box
                     d="flex"
                     alignItems="center"
                     p={1}
                     pr={2}
+                    width="4.5rem"
                 >
                     {quantity > 1 ? (
                         <button onClick={ () => setQuantity(quantity - 1) }>

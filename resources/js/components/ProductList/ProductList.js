@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card";
-import Navbar from "./Navbar/Navbar";
-import Search from "./SearchBar/Search";
-import ScanButton from "./ScanButton/ScanButton";
+import Card from "../Card";
+import './ProductList.css';
+import Search from "../SearchBar/Search";
+import ScanButton from "../ScanButton/ScanButton";
 import { Box } from "@chakra-ui/react";
 import axios from "axios";
 import Aos from "aos";
@@ -24,7 +24,7 @@ export default function ProductList(props) {
     };
     useEffect(() => {
         Aos.init();
-    }, []);
+    }, [props.reload4]);
 
     return (
         <div>
@@ -37,8 +37,14 @@ export default function ProductList(props) {
             <Box display="flex" flexWrap="wrap" justifyContent="center" mt={12}>
                 { props.data != undefined &&
                                 props.data.map((item, key) => {
+                                    console.log(item);
+                                    item.price.map((shop, key) => {
+                                        let array = shop.price;
+                                    })
                                     return (
-                                        <Card product_name={item.product_name} barcode={item.barcode} price={item.price[0].price} image={item.image}/>
+                                        <Card product_name={item.product_name} barcode={item.barcode} image={item.image}
+                                        
+                                        price={item.price[0].price}/>
                                     )
                                 })
                 }

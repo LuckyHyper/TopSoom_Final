@@ -14,10 +14,13 @@ class ShoppingListController extends Controller
         $id = Auth::user()->id;
         $product = ShoppingList::where('product_id', '=', $request->product_name)->where('user_id','=',$id)->first();
         if ($product === null) {
+            //for ($i=0;$i<2;$i++){
+                 $string [] = $request->product_price;
+            // }
             $shoplist = ShoppingList::create([
                 'user_id' => $id,
                 'product_id' => $request->product_name,
-                'product_price' => $request->product_price
+                'product_price' => json_encode($string)
              ]); 
              return response()->json([
                 'status' => 200,
@@ -35,6 +38,7 @@ class ShoppingListController extends Controller
     public function get_items(){
         $id = Auth::user()->id;
         $items = ShoppingList::select('*')->where('user_id','=',"$id")->get();
+        $items->product_price = '1';
          return response()->json(ShoppingListResource::collection($items));
     }
 

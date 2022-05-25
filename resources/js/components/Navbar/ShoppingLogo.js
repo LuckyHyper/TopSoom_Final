@@ -4,23 +4,23 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { Box, Text } from "@chakra-ui/react";
 
 function ShoppingLogo(props) {
-    const [shopLength, setShopLength] = useState(0);
 
     useEffect(() => {
+        console.log(props.reload3);
         axios
         .get(`/api/shop-list-length`)
     
         .then((res) => {
-            console.log("res.data");
             props.setShopNum(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch(() => props.setShopNum(0));
             
-    }, []);
+    }, [props.reload3]);
     return (
-        <Link to="/shop-list" className="shop-logo">
-            <Box position="relative" width="1.5rem" height="1.5rem"  >
-                <Box position="absolute" bottom="0" left="0" mt={1}> 
+
+        <Link to="/shop-list" >
+            <Box position="relative" width="1.5rem" height="1.5rem" >
+                <Box position="absolute" bottom="0" left="0"> 
                     <RiShoppingCartLine />
                 </Box>
                 <Box

@@ -4,7 +4,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login(props) {
     let navigate = useNavigate();
     const [login, setLogin] = useState({
         email: "",
@@ -12,12 +12,10 @@ function Login() {
         error_list: [],
     });
     const handleChange = (e) => {
-        console.log('test');
         setLogin({ ...login, [e.target.name]: e.target.value });
     };
     const loginSubmit = (e) => {
         e.preventDefault();
-        console.log("login");
         const Data = {
             email: login.email,
             password: login.password,
@@ -26,6 +24,7 @@ function Login() {
         axios.get("/sanctum/csrf-cookie").then((response) => {
             axios.post("/api/login", Data).then((res) => {
                 if (res.data.status === 200) {
+                    props.setReload3(props.reload3+1);
                     localStorage.setItem("auth_token", res.data.token);
                     localStorage.setItem("auth_name", res.data.username);
                     swal("Success", res.data.message, "success");

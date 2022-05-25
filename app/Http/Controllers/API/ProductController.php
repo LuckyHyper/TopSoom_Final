@@ -19,10 +19,6 @@ class ProductController extends Controller
         elseif(!empty($request->product_name)){
                 $price= Product::select('*')->where('product_name','Like',"%$request->product_name%")->get();            
         }else{
-            $price= Product::all();
-        }
-
-        if (is_null($price)) {
             return response()->json('Data not found', 404); 
         }
         return response()->json(ProductResource::collection($price));

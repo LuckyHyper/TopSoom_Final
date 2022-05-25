@@ -5,6 +5,19 @@ import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 function Card(props) {
+
+    const addShopList = () => {
+        return axios
+            .post(`/api/shop-list`, product)
+
+            .then((res) => {
+                if (res.data.status === 200) {
+                    props.setShopNum(props.shopNum+1);
+                }
+            })
+
+            .catch((err) => console.log(err));
+    }
     return (
         <Box
             display="flex"
@@ -13,9 +26,8 @@ function Card(props) {
             mt={5}
             mr={3}
             ml={3}
-            width="125px"
-            height="140px"
-            bgColor="#f2f2f2"
+            width="150px"
+            height="170px"
             borderRadius="1.5rem"
             boxShadow="1px 1px 10px 1px rgba(0,0,0,0.15)"
         >
@@ -27,36 +39,49 @@ function Card(props) {
                 display="flex"
                 justifyContent="space-between"
             >
-                <Text fontSize="20px">
-                    <BiPlus />
-                </Text>
+                <button onClick={addShopList}>
+                    <Text fontSize="20px">
+                        <BiPlus />
+                    </Text>
+                </button>
 
-                <Link to="/price-list" state={{barcode : props.barcode, product_name: props.product_name, price: props.price, image: props.image }}>
-
+                <Link
+                    to="/price-list"
+                    state={{
+                        barcode: props.barcode,
+                        product_name: props.product_name,
+                        price: props.price,
+                        image: props.image,
+                    }}
+                >
                     <Text fontSize="18px">
                         <FiArrowRight />
                     </Text>
                 </Link>
             </Box>
             <Image
-                p={3}
+                p={1}
                 Width="80px"
                 height="80px"
-                borderRadius={"md"}
+                borderRadius="12px"
                 margin="auto"
                 src={props.image}
                 alt="image"
             />
-            <Text
-                display="flex"
-                justifyContent="center"
-                fontFamily="'Roboto', sans-serif"
-                fontSize="12px"
-                p={2}
-                mb={2}
-            >
-                {props.product_name}
-            </Text>
+            <Box height="65px" borderBottomRadius="1rem" bgColor="#f2f2f2">
+                <Text
+                    display="flex"
+                    textAlign="center"
+                    justifyContent="center"
+                    fontFamily="'Roboto', sans-serif"
+                    fontSize="12px"
+                    pt={1}
+                    p={2}
+                    pb={2}
+                >
+                    {props.product_name}
+                </Text>
+            </Box>
         </Box>
     );
 }
