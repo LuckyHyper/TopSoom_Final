@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar/Navbar";
-
 import Search from "./SearchBar/Search";
 import ScanButton from "./ScanButton/ScanButton";
 import { Box, Image, Text, Stack, Button } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import axios from "axios";
-import Aos from "aos";
 import swal from "sweetalert";
+import Aos from "aos";
 import "aos/dist/aos.css";
 
 function PriceList(props) {
@@ -18,11 +16,12 @@ function PriceList(props) {
     const product_name = location.state?.product_name;
     const image = location.state?.image;
     const [search, setSearch] = useState([]);
-    const [number, setNumber]= useState(0);
+    const [data, setData] = useState();
 
     const product = {
         product_name: product_name,
         product_price: price,
+        barcode: barcode
     };
 
     useEffect(async () => {
@@ -31,11 +30,11 @@ function PriceList(props) {
             .get(`/api/price?barcode=${barcode}`)
 
             .then((res) => {
-                props.setData(res.data);
+                setData(res.data);
             })
 
             .catch((err) => console.log(err));
-    }, [number]);
+    }, []);
     const ProductsByName = async () => {
         return await axios
             .get(`/api/product?product_name=${search}`)
@@ -111,10 +110,11 @@ function PriceList(props) {
                 </Box>
 
                 <Box pl={8} pr={8}>
-                    {props.data != undefined &&
-                        props.data[0].price.map((item) => { 
+                    {data != undefined &&
+                        data[0].price.map((item, key) => { 
                             return (
                                 <Box
+                                    key = {item.shop_name}
                                     pr={6}
                                     pl={6}
                                     pt={1}

@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 
 function Card(props) {
 
+    const product = {
+        product_name: props.product_name,
+        product_price: props.product_price,
+        barcode: props.barcode
+    };
     const addShopList = () => {
+        console.log('heeee');
         return axios
             .post(`/api/shop-list`, product)
 
@@ -61,7 +67,7 @@ function Card(props) {
             </Box>
             <Image
                 p={1}
-                Width="80px"
+                width="80px"
                 height="80px"
                 borderRadius="12px"
                 margin="auto"

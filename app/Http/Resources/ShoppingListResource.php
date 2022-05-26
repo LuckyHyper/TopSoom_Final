@@ -17,7 +17,8 @@ class ShoppingListResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'product_id' => $this->product_id,
+            'product_name' => $this->product_name,
+            'barcode' => $this->barcode,
             'product_price' => $this->product_price,
             'quantity' => $this->quantity,
             'created_at' => $this->created_at,

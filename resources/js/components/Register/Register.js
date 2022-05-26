@@ -37,13 +37,11 @@ function Register() {
     };
 
     return (
-        <div>
-
-                <div id="container">
+        <div id="container">
                     <form id="loginform" onSubmit={registerSubmit}>
                         <h2 id="headerTitle">Register</h2>
                         <div className="row">
-                            <label class="register">Username</label>
+                            <label className="register">Username</label>
                             <input
                                 placeholder="Enter your username"
                                 type="text"
@@ -52,7 +50,7 @@ function Register() {
                                 onChange={handleChange}
                             />
                             <span>{register.error_list.email}</span>
-                            <label class="register">Name</label>
+                            <label className="register">Name</label>
                             <input
                                 placeholder="Enter your Email"
                                 type="text"
@@ -60,7 +58,7 @@ function Register() {
                                 value={register.email}
                                 onChange={handleChange}
                             />
-                            <label class="register">Password</label>
+                            <label className="register">Password</label>
                             <input
                                 placeholder="Enter your password"
                                 type="password"
@@ -75,7 +73,6 @@ function Register() {
                         </div>
                     </form>
                 </div>
-            </div>
     );
 }
 

@@ -103,7 +103,7 @@ export default function ShopList(props) {
                     list.map((item) => {
                         return (
                             <ShopItem
-                                product_name={item.product_id}
+                                product_name={item.product_name}
                                 price={item.product_price}
                                 quantity={item.quantity}
                                 itemId={item.id}

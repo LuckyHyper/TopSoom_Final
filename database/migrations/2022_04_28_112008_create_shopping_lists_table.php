@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->id();
             $table->Integer('user_id');
-            $table->string('product_id');
-            $table->longText('product_price');
+            $table->string('product_name');
+            $table->bigInteger('barcode');
+            $table->float('product_price');
             $table->Integer('quantity')->default(1);
             $table->timestamps();
         });

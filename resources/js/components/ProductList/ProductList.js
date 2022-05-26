@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Card";
-import './ProductList.css';
+import "./ProductList.css";
 import Search from "../SearchBar/Search";
 import ScanButton from "../ScanButton/ScanButton";
 import { Box } from "@chakra-ui/react";
@@ -11,7 +11,6 @@ import "aos/dist/aos.css";
 export default function ProductList(props) {
     const [search, setSearch] = useState([]);
     const ProductsByName = async () => {
-        
         return await axios
             .get(`/api/product?product_name=${search}`)
 
@@ -29,28 +28,30 @@ export default function ProductList(props) {
     return (
         <div>
             <div data-aos="slide-down" data-aos-duration="1200">
-                <Search
-                    setSearch={setSearch}
-                    ProductsByName={ProductsByName}
-                />
+                <Search setSearch={setSearch} ProductsByName={ProductsByName} />
             </div>
             <Box display="flex" flexWrap="wrap" justifyContent="center" mt={12}>
-                { props.data != undefined &&
-                                props.data.map((item, key) => {
-                                    console.log(item);
+                {props.data != undefined &&
+                    props.data.map((item, key) => {
+                        /*  console.log(item);
                                     item.price.map((shop, key) => {
                                         let array = shop.price;
-                                    })
-                                    return (
-                                        <Card product_name={item.product_name} barcode={item.barcode} image={item.image}
-                                        
-                                        price={item.price[0].price}/>
-                                    )
-                                })
-                }
-                
+                                    }) */
+                        return (
+                            <Card
+                                key = {item.barcode}
+                                product_name = {item.product_name}
+                                product_price = {item.price[0].price}
+                                barcode = {item.barcode}
+                                image = {item.image}
+                                setShopNum = {props.setShopNum}
+                                shopNum = {props.shopNum}
+                                price = {item.price[0].price}
+                            />
+                        );
+                    })}
             </Box>
-                <ScanButton></ScanButton>
+            <ScanButton></ScanButton>
         </div>
     );
 }
