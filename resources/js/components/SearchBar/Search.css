@@ -1,8 +1,9 @@
 .search-bar{
-    margin-top: 4.5rem ;
+    margin-top: 0rem ;
     display: flex;
     justify-content: center;
     padding-left: 0.5rem;
+    z-index: 1;
 }
 .search-input{
     width: 70vw;
@@ -29,4 +30,10 @@
 .bi-search{
     color: #333333;
     transform:translateY(-3px);
+}
+
+@media only screen and (min-width: 768px) {
+    .search-bar{
+        margin-top: 0rem ;
+    }
 }

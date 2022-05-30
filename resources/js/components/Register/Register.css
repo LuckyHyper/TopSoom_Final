@@ -16,7 +16,7 @@
 
 
 #loginform {
-    margin: 95px auto;
+    margin: 130px auto;
     width: 300px;
     min-height: 380px;
     border-radius: 25px;
@@ -93,5 +93,6 @@
 @media only screen and (max-width: 375px) {
     #loginform {
         width: 250px;
+        margin: 95px auto;
     }
 }

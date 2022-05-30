@@ -17,7 +17,9 @@ Route::get('users',[AuthController::class,'index']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
     Route::post('admin',[AdminController::class,'insertCSV']);
-
+    
+    Route::get('shop-prices',[ShoppingListController::class,'get_cost']);
+    
     Route::post('shop-list',[ShoppingListController::class,'add_item']);
     Route::get('shop-list',[ShoppingListController::class,'get_items']);
     Route::get('shop-list-length',[ShoppingListController::class,'items_length']);

@@ -1,17 +1,16 @@
 import React from 'react';
 import Quag from './Quagga';
-import { useNavigate, Link } from 'react-router-dom';
+import './Scanner.css';
+import { useNavigate } from 'react-router-dom';
 
-function Scanner(props) {
+function Scanner() {
   const navigate= useNavigate();
   const _onDetected = result => {
-    navigate('/price-list',{state:{barcode: result }});
+    navigate('/android_asset/index.html',{state:{barcode: result }});
   }
 
     return (
-      <div>
-        <Link to='/'>GOOOO</Link>
-        <br></br> 
+      <div className='scanner'>
         <Quag onDetected={_onDetected} />
       </div>
     );

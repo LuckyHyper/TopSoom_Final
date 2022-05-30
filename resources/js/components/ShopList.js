@@ -8,13 +8,13 @@ import ShopItem from "./ShopItem";
 export default function ShopList(props) {
     const [list, setList] = useState([]);
     const [reload, setReload] = useState();
-    const [somme, setSomme] = useState(0);
     const [isDisable, setDisable] = useState(false);
     const [reload2, setReload2] = useState(1);
+    const [result, setResult] = useState({ monoprix: 0, carrefour: 0 });
+    const [isShow, setShow] = useState(0);
 
-    useEffect(() => {
-        setSomme(0);
-        axios
+    useEffect(async () => {
+        await axios
             .get(`/api/shop-list`)
 
             .then((res) => {
@@ -25,25 +25,53 @@ export default function ShopList(props) {
     }, [reload, reload2]);
 
     const deleteAll = async () => {
+        setShow(0);
         setReload(reload + 1);
         await axios
             .delete(`/api/delete-all-items/`)
             .then((res) => {
                 props.setShopNum(0);
-                setSomme(0);
             })
 
             .catch((err) => console.log(err));
     };
-    const bottom_line = () => {
-        let s = 0;
-        let z = 0;
-        list.map((y) => {
-            console.log();
-            s = y.product_price * y.quantity;
-            z = z + s;
-            setSomme(z);
-        });
+    const total_price = () => {
+
+        axios
+            .get(`/api/shop-prices`)
+            .then((res) => {
+                console.log(result);
+                console.log("test");
+                console.log(res.data);
+                setResult({ monoprix: res.data[1], carrefour: res.data[0] });
+            })
+            .catch((err) => console.log(err));
+        return setShow(1)
+    
+          //  console.log(result.carrefour)
+            /*if (floatNum == 1)  {
+            str = str + "00";
+            result.carrefour = str;
+        }
+        else if (floatNum == 2)  {
+            str = str + "0";
+            result.carrefour = str;
+        }
+
+        var str2 = ''+result.carrefour;
+        var floatNum2 = (str2.length-1)-str2.indexOf(".");
+
+        if (floatNum2 == 1)  {
+            str2 = str2 + "00";
+            result.monoprix = str2;
+        }
+        else if (floatNum == 2)  {
+            str2 = str2 + "0";
+            result.monoprix = str2;
+        }
+        console.log(result.monoprix,' ',result.carrefour);
+        setResult({monoprix : str, carrefour : str2});
+        */
     };
 
     return (
@@ -106,48 +134,107 @@ export default function ShopList(props) {
                                 product_name={item.product_name}
                                 price={item.product_price}
                                 quantity={item.quantity}
-                                itemId={item.id}
+                                barcode={item.barcode}
                                 setReload={setReload}
                                 setShopNum={props.setShopNum}
                                 shopNum={props.shopNum}
-                                setSomme={setSomme}
                                 setReload2={setReload2}
                                 setDisable={setDisable}
+                                setShow={setShow}
                             />
                         );
                     })}
             </Box>
-            <Box p={3}>
+
+            <Box p={3} pl={20} pr={20}>
+                { isShow==1 &&
+                <Box>
+                <Box
+                    pr={6}
+                    pl={6}
+                    pt={1}
+                    pb={1}
+                    mb={2}
+                    width="100%"
+                    border="1.5px solid #FB9300"
+                    boxShadow="1px 1px 2px #FB9300 "
+                    display="flex"
+                    justifyContent="space-around"
+                    borderRadius="25px"
+                >
+                    <Text fontSize="13px" bgColor="transparent" color="343F56">
+                        Monoprix
+                    </Text>
+
+                    <Text fontSize="15px">
+                        {" "}
+                        {result.monoprix != 0 ? result.monoprix : "?"} dt
+                    </Text>
+                </Box>
+                <Box
+                    pr={6}
+                    pl={6}
+                    pt={1}
+                    pb={1}
+                    width="100%"
+                    border="1.5px solid #FB9300"
+                    boxShadow="1px 1px 2px #FB9300 "
+                    display="flex"
+                    justifyContent="space-around"
+                    borderRadius="25px"
+                >
+                    <Text fontSize="13px" bgColor="transparent" color="343F56">
+                        Carrefour
+                    </Text>
+
+                    <Text fontSize="15px">
+                        {" "}
+                        {result.carrefour != 0 ? result.carrefour : "?"} dt
+                    </Text>
+                </Box>
+                </Box>
+                }
                 <Box d="flex" justifyContent="center">
-                <Text mr={5} borderBottom="1px solid #343F56" color="#343F56" justifyContent="center">
-                    {somme} dt
-                </Text> 
+                    {isDisable ? (
+                        <Button
+                            bgColor="#FB9300"
+                            size="sm"
+                            color="#f2f2f2"
+                            onClick={total_price}
+                            disabled
+                            mt="1.5rem"
+                            justifyContent="center"
+                        >
+                            Calculate
+                        </Button>
+                    ) : (
+                        <Button
+                            bgColor="#FB9300"
+                            width="150px"
+                            size="sm"
+                            color="#f2f2f2"
+                            onClick={total_price}
+                            justifyContent="center"
+                            mt="1.5rem"
+                        >
+                            Calculate
+                        </Button>
+                    )}
                 </Box>
                 <Box d="flex" justifyContent="center">
-                {isDisable ? (
-                    <Button
-                        bgColor="#FB9300"
-                        size="sm"
-                        color="#f2f2f2"
-                        onClick={bottom_line}
-                        disabled
-                        mt="1rem"
-                        justifyContent="center"
-                    >
-                        Calculate
-                    </Button>
-                ) : (
-                    <Button
-                        bgColor="#FB9300"
-                        size="sm"
-                        color="#f2f2f2"
-                        onClick={bottom_line}
-                        justifyContent="center"
-                        mt="1rem"
-                    >
-                        Calculate
-                    </Button>
-                )}
+                    <Link to='/'>
+                        <Button
+                            bgColor="#FB9300"
+                            width="150px"
+                            size="sm"
+                            color="#f2f2f2"
+                            onClick={total_price}
+                            justifyContent="center"
+                            mt="0.8rem"
+                        >
+                            Add Product
+                        </Button>
+                    </Link>
                 </Box>
             </Box>
             <ScanButton></ScanButton>

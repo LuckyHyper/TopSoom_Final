@@ -50,7 +50,7 @@ function Register() {
                                 onChange={handleChange}
                             />
                             <span>{register.error_list.email}</span>
-                            <label className="register">Name</label>
+                            <label className="register">Email</label>
                             <input
                                 placeholder="Enter your Email"
                                 type="text"

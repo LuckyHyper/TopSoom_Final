@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\ShoppingList;
 use App\Http\Resources\ShoppingListResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ShoppingListController extends Controller
 {
@@ -14,19 +17,15 @@ class ShoppingListController extends Controller
         $id = Auth::user()->id;
         $product = ShoppingList::where('barcode', '=', $request->barcode)->where('user_id','=',$id)->first();
         if ($product === null) {
-            //for ($i=0;$i<2;$i++){
-             //   $string [] = $request->product_price;
-            // }
-            $shoplist = ShoppingList::create([
+            $shoplist = ShoppingList::create([ 
                 'user_id' => $id,
-                'product_name' => $request->product_name,
                 'barcode' => $request->barcode,
-                'product_price' => $request->product_price               // json_encode($string)
+                'product_name' => $request->product_name
              ]); 
              return response()->json([
                 'status' => 200,
                 'message'=>'Added Successfully',
-                'request' => $request->product_price
+                'request' => $request->barcode
             ]); 
         }else{
                 return response()->json([
@@ -40,6 +39,28 @@ class ShoppingListController extends Controller
         $id = Auth::user()->id;
         $items = ShoppingList::select('*')->where('user_id','=',"$id")->get();
          return response()->json(ShoppingListResource::collection($items));
+    }
+    public function get_cost(){
+        $products  = DB::table('shopping_lists')
+            ->join('prices','shopping_lists.barcode','prices.barcode')
+            ->select('shopping_lists.barcode','shop_name','price','quantity')
+            ->get();
+        $s1=0;  $i1=0;        
+        $s2=0;  $i2=0;
+       
+        foreach($products as $product){
+            if ($product->shop_name == 'Carrefour'){
+                $i1 = $i1 + 1;
+                $s1 = $s1 + ($product->price * $product->quantity);
+            }elseif ($product->shop_name == 'Monoprix'){
+                $i2 = $i2 + 1;
+                $s2 = $s2 + ($product->price* $product->quantity);
+            }
+        }
+        if ($i1 != $i2) { $s2 = 0; }
+        
+         $result = [$s1,$s2];
+       return response()->json($result);
     }
 
     public function delete_item($id){
@@ -68,7 +89,7 @@ class ShoppingListController extends Controller
     }
     public function update_quantity(Request $request){
         
-        $item = ShoppingList::find($request->itemId);
+        $item = ShoppingList::find($request->barcode);
         $item->quantity = $request->quantity;
         $item->save();
         return response()->json([

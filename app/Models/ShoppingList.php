@@ -10,13 +10,12 @@ class ShoppingList extends Model
 {
     use HasFactory;
     protected $fillable= [
+        'barcode',
         'user_id',
         'product_name',
-        'barcode',
-        'product_price',
         'quantity'
     ];
-    
+    protected $primaryKey = 'barcode';
     public function user()
     {
         return $this->hasOne(User::class,'id','user_id');

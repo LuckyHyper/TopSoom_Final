@@ -10,21 +10,22 @@ import axios from "axios";
 export default function ShopItem(props) {
     const [quantity, setQuantity] = useState(props.quantity);
     const [checkbox, setCheckbox] = useState(false);
-    const itemId= props.itemId;
+    const barcode= props.barcode;
 
      useEffect(() => { 
 
         props.setReload2(quantity);
+        props.setShow(0);
         axios
-            .put(`/api/item-quantity`,{itemId,quantity})
+            .put(`/api/item-quantity`,{barcode,quantity})
         
     },[quantity]); 
   
     const deleteItem = async () => {
-        props.setReload(props.itemId);
-        props.setSomme(0);
+        props.setReload(props.barcode);
+        props.setShow(0);
           await axios
-            .delete(`/api/delete-item/${props.itemId}`)
+            .delete(`/api/delete-item/${props.barcode}`)
             .then((res) => {
             })
             .catch((err) => console.log(err));
@@ -54,8 +55,9 @@ export default function ShopItem(props) {
             <Box
                 bgColor="#e6e6e6"
                 width="100%"
-                minHeight="50px"
+                minHeight="45px"
                 d="flex"
+                alignItems="center"
                 borderRadius="15px"
                 justifyContent="space-between"
             >

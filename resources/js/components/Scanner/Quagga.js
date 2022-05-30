@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Scanner.css';
 
 class Quag extends Component {
   componentDidMount() {
@@ -8,7 +9,7 @@ class Quag extends Component {
           type: 'LiveStream',
           constraints: {
             width: 640,
-            height: 480,
+            height: 640,
             facingMode: 'environment',
           },
         },
@@ -44,7 +45,7 @@ class Quag extends Component {
   }
 
   render() {
-    return <div id="interactive" className="viewport" />
+    return <div id="interactive" className="viewport camera" />
   }
 }
 

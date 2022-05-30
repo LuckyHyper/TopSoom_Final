@@ -4,7 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import PriceList from "./components/PriceList";
-import ProductList from "./components/ProductList/ProductList";
+import ProductList from "./components/ProductList";
 import Scanner from "./components/Scanner/Scanner";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -14,7 +14,7 @@ import "../css/app.css";
 import ShopList from "./components/ShopList";
 import Navbar from "./components/Navbar/Navbar";
 
-axios.defaults.baseURL = "http://192.168.1.103:8000";
+axios.defaults.baseURL = "http://192.168.1.4:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 

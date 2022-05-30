@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FormLabel, Button, Input, Stack } from "@chakra-ui/react";
+import { FormControl, FormLabel, Button, Input, Stack,Box } from "@chakra-ui/react";
 import axios from "axios";
 
 function Admin() {
@@ -9,12 +9,17 @@ function Admin() {
         data.shift();
         let data1 = data.map((d) => {
             let row = d.split(",");
-            let object = { barcode: row[0], product_name: row[1], shop_name: row[2], price: row[3] };
+            let object = {
+                barcode: row[0],
+                product_name: row[1],
+                shop_name: row[2],
+                price: row[3],
+            };
             return object;
         });
         data1.pop();
-        console.log({prices: data1});
-        return {prices: data1};
+        console.log({ prices: data1 });
+        return { prices: data1 };
     };
 
     const submit = () => {
@@ -34,10 +39,14 @@ function Admin() {
     };
     return (
         <div>
-            <Stack justifyContent="center" alignItems="center">
-                <FormControl>
-                    <FormLabel>CSV File</FormLabel>
+            <Stack display="flex" justifyContent="center" alignItems="center" mt={24}>
+                <FormControl p={2} justifyContent="center" alignContent="center">
+                    <FormLabel>Insert CSV File</FormLabel>
                     <Input
+                        mt={4}
+                        border="none"
+                        borderBottom="2px solid #343F56"
+                        borderRadius="0"
                         id="csvFile"
                         type="file"
                         accept=".csv"
@@ -47,14 +56,15 @@ function Admin() {
                     />{" "}
                     <br></br>
                     <br></br>
-                    <Button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            if (csvFile) submit();
-                        }}
-                    >
-                        Submit
-                    </Button>
+                        <Button
+                        justifyContent="center"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (csvFile) submit();
+                            }}
+                        >
+                            Submit
+                        </Button>
                 </FormControl>
             </Stack>
         </div>
