@@ -15,7 +15,7 @@ class ShoppingListController extends Controller
 {
     public function add_item(Request $request){
         $id = Auth::user()->id;
-        $product = ShoppingList::where('barcode', '=', $request->barcode)->where('user_id','=',$id)->first();
+        $product = ShoppingList::where('user_id','=',$id)->where('barcode', '=', $request->barcode)->first();
         if ($product === null) {
             $shoplist = ShoppingList::create([ 
                 'user_id' => $id,
@@ -41,9 +41,11 @@ class ShoppingListController extends Controller
          return response()->json(ShoppingListResource::collection($items));
     }
     public function get_cost(){
+        $id = Auth::user()->id;
         $products  = DB::table('shopping_lists')
             ->join('prices','shopping_lists.barcode','prices.barcode')
             ->select('shopping_lists.barcode','shop_name','price','quantity')
+            ->where('user_id',$id)
             ->get();
         $s1=0;  $i1=0;        
         $s2=0;  $i2=0;
@@ -63,8 +65,9 @@ class ShoppingListController extends Controller
        return response()->json($result);
     }
 
-    public function delete_item($id){
-        $item = ShoppingList::find($id);
+    public function delete_item($barcode){
+        $id = Auth::user()->id;
+        $item = ShoppingList::select('*')->where('barcode',$barcode)->where('user_id',$id)->first();
         $item->delete();
         return response()->json([
             'status' => 200,
@@ -88,8 +91,8 @@ class ShoppingListController extends Controller
         return response()->json($items);
     }
     public function update_quantity(Request $request){
-        
-        $item = ShoppingList::find($request->barcode);
+        $id = Auth::user()->id;
+        $item = ShoppingList::select('*')->where('barcode','=',$request->barcode)->where('user_id','=',$id)->first();
         $item->quantity = $request->quantity;
         $item->save();
         return response()->json([

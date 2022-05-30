@@ -15,7 +15,6 @@ class ShoppingList extends Model
         'product_name',
         'quantity'
     ];
-    protected $primaryKey = 'barcode';
     public function user()
     {
         return $this->hasOne(User::class,'id','user_id');
