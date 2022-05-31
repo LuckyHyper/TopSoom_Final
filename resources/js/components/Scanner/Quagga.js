@@ -8,7 +8,7 @@ class Quag extends Component {
         inputStream: {
           type: 'LiveStream',
           constraints: {
-            width: 640,
+            width: 320,
             height: 640,
             facingMode: 'environment',
           },

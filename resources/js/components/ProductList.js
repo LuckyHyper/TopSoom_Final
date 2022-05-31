@@ -7,13 +7,26 @@ import axios from "axios";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useMediaQuery } from "react-responsive";
+import { useLocation } from 'react-router-dom';
 
 export default function ProductList(props) {
     const [search, setSearch] = useState([]);
+    const location = useLocation();
     const barcode = location.state?.barcode;
 
     useEffect(async () => {
+    
         Aos.init();
+        if(barcode != null){
+        await axios
+            .get(`/api/price?barcode=${barcode}`)
+
+            .then((res) => {
+                console.log(res.data);
+                props.setData(res.data);
+            })
+            .catch((err) => console.log(err));
+        }
     }, [props.reload4]);
 
     const ProductsByName = async () => {

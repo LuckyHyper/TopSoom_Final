@@ -19,6 +19,7 @@ class ProductController extends Controller
         }else{
             return response()->json('Data not found', 404); 
         }
+        error_log(json_encode($price));
         return response()->json(ProductResource::collection($price));
     }
 
@@ -27,6 +28,7 @@ class ProductController extends Controller
         if(!empty($request->barcode)){
             $product= Product::where('barcode',$request->barcode)->get();
         }
+        error_log(json_encode($product));
         return response()->json(ProductResource::collection($product));
     }
 

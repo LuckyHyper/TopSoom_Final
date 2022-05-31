@@ -40,38 +40,11 @@ export default function ShopList(props) {
         axios
             .get(`/api/shop-prices`)
             .then((res) => {
-                console.log(result);
-                console.log("test");
-                console.log(res.data);
                 setResult({ monoprix: res.data[1], carrefour: res.data[0] });
             })
             .catch((err) => console.log(err));
         return setShow(1)
     
-          //  console.log(result.carrefour)
-            /*if (floatNum == 1)  {
-            str = str + "00";
-            result.carrefour = str;
-        }
-        else if (floatNum == 2)  {
-            str = str + "0";
-            result.carrefour = str;
-        }
-
-        var str2 = ''+result.carrefour;
-        var floatNum2 = (str2.length-1)-str2.indexOf(".");
-
-        if (floatNum2 == 1)  {
-            str2 = str2 + "00";
-            result.monoprix = str2;
-        }
-        else if (floatNum == 2)  {
-            str2 = str2 + "0";
-            result.monoprix = str2;
-        }
-        console.log(result.monoprix,' ',result.carrefour);
-        setResult({monoprix : str, carrefour : str2});
-        */
     };
 
     return (
@@ -128,9 +101,10 @@ export default function ShopList(props) {
                 p={1}
             >
                 {list != undefined &&
-                    list.map((item) => {
+                    list.map((item, key) => {
                         return (
                             <ShopItem
+                                key= {item.barcode}
                                 product_name={item.product_name}
                                 price={item.product_price}
                                 quantity={item.quantity}
