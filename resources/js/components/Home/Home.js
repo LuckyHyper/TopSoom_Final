@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState} from "react";
 import Footer from "../Footer";
-import Navbar from "../Navbar/Navbar";
 import Search from "../SearchBar/Search";
 import Slider from "../Slider/Slider";
 import { SliderData } from "../Slider/SliderData";
@@ -25,6 +24,7 @@ import {
     FcInTransit,
     FcCamera,
 } from "react-icons/fc";
+
 
 //HOW IT WORKS FEATURES
 const Feature = ({ title, text, icon }) => {
@@ -65,16 +65,38 @@ const Feature2 = ({ text, icon, iconBg }) => {
         </Stack>
     );
 };
-export default function Home() {
+export default function Home(props) {
+
+    const [contact, setContact] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
+    const handleChange = (e) => {
+        setContact({ ...contact, [e.target.name]: e.target.value });
+    };
+    const contactSubmit = (e) => {
+        e.preventDefault();
+        axios.get("/sanctum/csrf-cookie").then(() => {
+            axios.post(`/api/contact`, contact).then((res) => 
+            {
+                if (res.data.status === 200) {
+                    swal("Success", res.data.message, "success");
+                }
+            });
+        });
+    }
+    
     return (
-        <div>
-            <Navbar />
-            <Search />
-            {/* <p className="shops">Featured Shops</p> */}
+        <div className="home-container">
+            <Box mt="5rem">
+                  <Search  setSearch={props.setSearch} ProductsByName={props.ProductsByName} />
+                </Box>
             <Slider slides={SliderData} />
 
-            <section className="about-us">
-                <Container maxW={"5xl"} py={12}>
+            <section className="about-us" id="about-us">
+                <Container maxW={"5xl"} pt="75px" >
                     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                         <Stack spacing={4}>
                             <Heading>About us</Heading>
@@ -105,8 +127,9 @@ export default function Home() {
                     </SimpleGrid>
                 </Container>
             </section>
-            <section className="How-it-works">
-                <Box p={4}>
+            <Box height="90px" id="how-it-works"></Box>
+            <section className="How-it-works"  py="90px">
+                <Box py={4}>
                     <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                         <Feature
                             icon={<Icon as={FcPhoneAndroid} w={10} h={10} />}
@@ -132,33 +155,45 @@ export default function Home() {
                     </SimpleGrid>
                 </Box>
             </section>
-            <section className="contact-us">
-                <div className="container">
+            <section className="contact-us" id="contact-us">
+                <div className="contact-container">
                     <div className="contact-box">
                         <div className="left"></div>
-                        <form>
+                        <form onSubmit={contactSubmit}>
                             <div className="right">
-                                <h2>Contact Us</h2>
+                                <h2 className="page-titles">Contact Us</h2>
                                 <input
                                     type="text"
                                     className="field"
                                     placeholder="Your Name"
+                                    name="name"
+                                    value={contact.name}
+                                    onChange={handleChange}
                                 />
                                 <input
                                     type="text"
                                     className="field"
                                     placeholder="Your Email"
+                                    name="email"
+                                    value={contact.email}
+                                    onChange={handleChange}
                                 />
                                 <input
                                     type="text"
                                     className="field"
                                     placeholder="Phone"
+                                    name="phone"
+                                    value={contact.phone}
+                                    onChange={handleChange}
                                 />
                                 <textarea
                                     placeholder="Message"
                                     className="field"
+                                    name="message"
+                                    value={contact.message}
+                                    onChange={handleChange}
                                 ></textarea>
-                                <button className="btn">Send</button>
+                                <button className="send-btn">Send</button>
                             </div>
                         </form>
                     </div>

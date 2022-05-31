@@ -9,12 +9,13 @@ import Scanner from "./components/Scanner/Scanner";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Admin from "./components/Admin";
+import Home from "./components/Home/Home";
 import axios from "axios";
 import "../css/app.css";
 import ShopList from "./components/ShopList";
 import Navbar from "./components/Navbar/Navbar";
 
-axios.defaults.baseURL = "http://192.168.1.4:8000";
+axios.defaults.baseURL = "http://192.168.1.100:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
@@ -29,16 +30,33 @@ function App() {
     const [data, setData] = useState(null);
     const [shopNum, setShopNum] = useState(0);
     const [reload3, setReload3] = useState(0);
+    const[search, setSearch] = useState();
+
+    const ProductsByName = async () => {
+        return await axios
+            .get(`/api/product?product_name=${search}`)
+
+            .then((res) => {
+                setData(res.data);
+                console.log(res.data);
+            })
+
+            .catch((err) => console.log(err));
+    };
 
     return (
         <ChakraProvider>
             <Router>
-                <Navbar shopNum={shopNum} setShopNum={setShopNum} reload3={reload3} setReload3={setReload3} />
+                <Navbar shopNum={shopNum} setShopNum={setShopNum} reload3={reload3} setReload3={setReload3}/>
                 <Routes>
                     <Route
-                        exact
                         path="/"
-                        element={<ProductList data={data} setData={setData} setShopNum={setShopNum} shopNum={shopNum} />}
+                        element={<Home data={data} setData={setData} ProductsByName={ProductsByName} setSearch={setSearch} />}
+                    />
+                    <Route
+                        exact
+                        path="/product-list"
+                        element={<ProductList setSearch={setSearch} data={data} setData={setData} ProductsByName={ProductsByName} setShopNum={setShopNum} shopNum={shopNum} />}
                     />
                     <Route
                         path="/price-list"

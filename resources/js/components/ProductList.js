@@ -10,7 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import { useLocation } from 'react-router-dom';
 
 export default function ProductList(props) {
-    const [search, setSearch] = useState([]);
+    //const [search, setSearch] = useState([]);
     const location = useLocation();
     const barcode = location.state?.barcode;
 
@@ -29,18 +29,7 @@ export default function ProductList(props) {
         }
     }, [props.reload4]);
 
-    const ProductsByName = async () => {
-        return await axios
-            .get(`/api/product?product_name=${search}`)
-
-            .then((res) => {
-                props.setData(res.data);
-                console.log(res.data);
-            })
-
-            .catch((err) => console.log(err));
-    };
-    
+        
     const DeviceSize = {
         mobile: 768,
     };
@@ -50,7 +39,7 @@ export default function ProductList(props) {
         <div>
             <div data-aos="slide-down" data-aos-duration="1200">
                 <Box mt="5rem">
-                  <Search setSearch={setSearch} ProductsByName={ProductsByName} />
+                  <Search setSearch={props.setSearch} ProductsByName={props.ProductsByName} />
                 </Box>
             </div>
             {isMobile ? (

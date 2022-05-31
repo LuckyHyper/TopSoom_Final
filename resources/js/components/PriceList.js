@@ -57,7 +57,7 @@ function PriceList(props) {
                 if (res.data.status === 200) {
                     props.setShopNum(props.shopNum + 1);
                 } else {
-                    swal("Warning", res.data.message, "warning");
+                    swal("", res.data.message, "info");
                 }
             })
 
@@ -73,7 +73,7 @@ function PriceList(props) {
             <Stack bgColor="#fff" width="100%" height="100vh">
                 <div data-aos="slide-down" data-aos-duration="1000">
                     <Box mt="5rem" d="flex" justifyContent="center">
-                        <Link to="/">
+                        <Link to="/product-list">
                             {isMobile ? (
                                 <Box
                                     position="absolute"

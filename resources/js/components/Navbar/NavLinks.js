@@ -6,23 +6,18 @@ export default function NavLinks(props) {
         <div className="NavLinksContainer">
             <ul className="LinksWrapper">
                 <li className="LinkItem">
-                    <a className="Link" href="#">
+                    <a className="Link" href="/#about-us">
                         About us
                     </a>
                 </li>
                 <li className="LinkItem">
-                    <a className="Link" href="#">
+                    <a className="Link" href="/#how-it-works">
                         How it works
                     </a>
                 </li>
                 <li className="LinkItem">
-                    <a className="Link" href="#">
-                        Explore
-                    </a>
-                </li>
-                <li className="LinkItem">
-                    <a className="Link" href="#">
-                        Impact
+                    <a className="Link" href="/#contact-us">
+                        Contact us
                     </a>
                 </li>
             </ul>

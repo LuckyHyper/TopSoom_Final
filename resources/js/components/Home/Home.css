@@ -1,3 +1,7 @@
+.home-container{
+    overflow: scroll; 
+    top: 50px;
+}
 .shops {
     padding-left: 100px;
     font-family: cursive;
@@ -25,7 +29,7 @@
     background-size: 55%;
     background-color: #fdfdfd;
     overflow: hidden;
-    padding: 100px 0;
+    padding: 250px 0;
 }
 
 .inner-container {
@@ -91,21 +95,21 @@
 }
 
 .contact-us {
-    height: 100vh;
     width: 100%;
 }
 
-.container {
+.contact-container {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 100px;
+    margin-top: 20px;
+    padding: 50px 100px;
 }
 
-.container:after {
+.contact-container:after {
     content: "";
     position: absolute;
     width: 100%;
@@ -143,13 +147,13 @@
     padding: 25px 40px;
 }
 
-h2 {
+h2.page-titles {
     position: relative;
     padding: 0 0 10px;
     margin-bottom: 10px;
 }
 
-h2:after {
+h2.page-titles:after {
     content: "";
     position: absolute;
     left: 50%;
@@ -158,7 +162,7 @@ h2:after {
     height: 4px;
     width: 50px;
     border-radius: 2px;
-    background-color: #2ecc71;
+    background-color: #FB9300;
 }
 
 .field {
@@ -180,10 +184,10 @@ textarea {
     min-height: 150px;
 }
 
-.btn {
+.send-btn {
     width: 100%;
     padding: 0.5rem 1rem;
-    background-color: #2ecc71;
+    background-color: #FB9300;
     color: #fff;
     font-size: 1.1rem;
     border: none;
@@ -192,8 +196,8 @@ textarea {
     transition: 0.3s;
 }
 
-.btn:hover {
-    background-color: #27ae60;
+.send-btn:hover {
+    background-color: #FB9300;
 }
 
 .field:focus {

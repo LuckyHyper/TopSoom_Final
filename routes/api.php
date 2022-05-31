@@ -13,6 +13,7 @@ Route::get('product',[ProductController::class,'search']);
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login'])->name('login');;
 Route::get('users',[AuthController::class,'index']);
+Route::post('contact',[AuthController::class,'contact']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout',[AuthController::class,'logout']);

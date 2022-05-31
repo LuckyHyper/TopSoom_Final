@@ -20,11 +20,16 @@ export default function Slider({ slides }) {
     setTimeout(nextSlide, 2000); // Change image every 2 second
     return (
         <section className="slider">
-            <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-            <FaArrowAltCircleRight
-                className="right-arrow"
-                onClick={nextSlide}
-            />
+            <div className="slider-buttons">
+                <FaArrowAltCircleLeft
+                    className="left-arrow"
+                    onClick={prevSlide}
+                />
+                <FaArrowAltCircleRight
+                    className="right-arrow"
+                    onClick={nextSlide}
+                />
+            </div>
             {SliderData.map((slide, index) => {
                 return (
                     <div

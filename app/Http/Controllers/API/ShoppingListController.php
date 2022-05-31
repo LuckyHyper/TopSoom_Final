@@ -29,7 +29,7 @@ class ShoppingListController extends Controller
             ]); 
         }else{
                 return response()->json([
-                    'message'=>'Failed ...',
+                    'message'=>'The product already exist in your Shopping List',
                     $product
                 ]);
         }

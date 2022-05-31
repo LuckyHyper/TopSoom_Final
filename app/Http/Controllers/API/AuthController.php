@@ -87,6 +87,14 @@ class Authcontroller extends Controller
             'message'=>'Logged Out Successfully',
         ]);
     }
+    public function contact(Request $request)
+    {
+        mail("kandercarbha@gmail.com","Contact-TopSoom","My name is \n test");
+        return response()->json([
+            'status'=>200,
+            'message'=>'Contact send Successfully',
+        ]);
+    }
 }
 
 

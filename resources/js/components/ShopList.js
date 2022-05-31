@@ -196,7 +196,7 @@ export default function ShopList(props) {
                     )}
                 </Box>
                 <Box d="flex" justifyContent="center">
-                    <Link to='/'>
+                    <Link to='/product-list'>
                         <Button
                             bgColor="#FB9300"
                             width="150px"

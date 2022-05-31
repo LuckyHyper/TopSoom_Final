@@ -25,6 +25,8 @@ function Card(props) {
             .then((res) => {
                 if (res.data.status === 200) {
                     props.setShopNum(props.shopNum + 1);
+                }else{
+                    swal("", res.data.message, "info");
                 }
             })
 

@@ -16,7 +16,7 @@ export default function Search(props) {
 
             <Link
                 className="btn-cta-freequote search-btn"
-                to="/android_asset/index.html"
+                to="/product-list"
                 onClick={props.ProductsByName}
             >
                 <div className="bi-search">

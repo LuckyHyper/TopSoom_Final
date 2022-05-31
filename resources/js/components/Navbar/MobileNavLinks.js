@@ -19,23 +19,18 @@ export function MobileNavLinks(props) {
                 <ul className="MobileLinksWrapper" data-aos="slide-right" data-aos-duration="800">
 
                         <li className="MobileLinkItem" data-aos="slide-right" data-aos-duration="800">
-                            <a className="MobileLink" href="#">
+                            <a className="MobileLink" href="/#about-us">
                                 About us
                             </a>
                         </li>
                     <li className="MobileLinkItem" data-aos="slide-right" data-aos-duration="950" >
-                        <a className="MobileLink" href="#">
+                        <a className="MobileLink" href="/#how-it-works">
                             How it works
                         </a>
                     </li>
-                    <li className="MobileLinkItem" data-aos="slide-right" data-aos-duration="1100">
-                        <a className="MobileLink" href="#">
-                            Explore
-                        </a>
-                    </li>
                     <li className="MobileLinkItem" data-aos="slide-right" data-aos-duration="1350">
-                        <a className="MobileLink" href="#">
-                            Impact
+                        <a className="MobileLink" href="/#contact-us">
+                            Contact us
                         </a>
                     </li>
                     <div className="Marginer" />
