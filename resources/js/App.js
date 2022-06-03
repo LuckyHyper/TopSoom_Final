@@ -10,12 +10,14 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Admin from "./components/Admin";
 import Home from "./components/Home/Home";
+import ScanButton from "./components/ScanButton/ScanButton";
 import axios from "axios";
 import "../css/app.css";
 import ShopList from "./components/ShopList";
 import Navbar from "./components/Navbar/Navbar";
+import { useMediaQuery } from "react-responsive";
 
-axios.defaults.baseURL = "http://192.168.1.100:8000";
+axios.defaults.baseURL = "http://192.168.1.4:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
@@ -43,11 +45,18 @@ function App() {
 
             .catch((err) => console.log(err));
     };
+    const DeviceSize = {
+        mobile: 768
+    };
+    const isMobile = useMediaQuery({ maxWidth: DeviceSize.mobile });
 
     return (
         <ChakraProvider>
             <Router>
                 <Navbar shopNum={shopNum} setShopNum={setShopNum} reload3={reload3} setReload3={setReload3}/>
+                { isMobile &&
+                <ScanButton></ScanButton>
+                 }
                 <Routes>
                     <Route
                         path="/"

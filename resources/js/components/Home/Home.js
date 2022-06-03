@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Footer from "../Footer";
 import Search from "../SearchBar/Search";
 import Slider from "../Slider/Slider";
@@ -14,9 +14,7 @@ import {
     Heading,
     Text,
     Stack,
-    StackDivider,
     Icon,
-    useColorModeValue,
 } from "@chakra-ui/react";
 import {
     FcFinePrint,
@@ -24,7 +22,6 @@ import {
     FcInTransit,
     FcCamera,
 } from "react-icons/fc";
-
 
 //HOW IT WORKS FEATURES
 const Feature = ({ title, text, icon }) => {
@@ -51,22 +48,22 @@ const Feature = ({ title, text, icon }) => {
 const Feature2 = ({ text, icon, iconBg }) => {
     return (
         <Stack direction={"row"} align={"center"}>
-            <Flex
-                w={8}
-                h={8}
-                align={"center"}
-                justify={"center"}
-                rounded={"full"}
-                bg={iconBg}
-            >
-                {icon}
-            </Flex>
-            <Text fontWeight={600}>{text}</Text>
+            <Box d="flex" justifyContent="center">
+                <Flex
+                    w={8}
+                    h={8}
+                    align={"center"}
+                    justify={"center"}
+                    bg={iconBg}
+                >
+                    {icon}
+                </Flex>
+                <Text fontWeight={600}>{text}</Text>
+            </Box>
         </Stack>
     );
 };
 export default function Home(props) {
-
     const [contact, setContact] = useState({
         name: "",
         email: "",
@@ -79,24 +76,26 @@ export default function Home(props) {
     const contactSubmit = (e) => {
         e.preventDefault();
         axios.get("/sanctum/csrf-cookie").then(() => {
-            axios.post(`/api/contact`, contact).then((res) => 
-            {
+            axios.post(`/api/contact`, contact).then((res) => {
                 if (res.data.status === 200) {
                     swal("Success", res.data.message, "success");
                 }
             });
         });
-    }
-    
+    };
+
     return (
         <div className="home-container">
             <Box mt="5rem">
-                  <Search  setSearch={props.setSearch} ProductsByName={props.ProductsByName} />
-                </Box>
+                <Search
+                    setSearch={props.setSearch}
+                    ProductsByName={props.ProductsByName}
+                />
+            </Box>
             <Slider slides={SliderData} />
 
             <section className="about-us" id="about-us">
-                <Container maxW={"5xl"} pt="75px" >
+                <Container maxW={"5xl"} pt="75px">
                     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                         <Stack spacing={4}>
                             <Heading>About us</Heading>
@@ -128,7 +127,7 @@ export default function Home(props) {
                 </Container>
             </section>
             <Box height="90px" id="how-it-works"></Box>
-            <section className="How-it-works"  py="90px">
+            <section className="How-it-works" py="90px">
                 <Box py={4}>
                     <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
                         <Feature

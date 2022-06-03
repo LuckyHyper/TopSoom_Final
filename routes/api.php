@@ -25,7 +25,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('shop-list',[ShoppingListController::class,'get_items']);
     Route::get('shop-list-length',[ShoppingListController::class,'items_length']);
     Route::put('item-quantity',[ShoppingListController::class,'update_quantity']);
-  //  Route::get('item-quantity',[ShoppingListController::class,'get_quantity']);
     Route::delete('delete-item/{id}',[ShoppingListController::class,'delete_item']);
     Route::delete('delete-all-items',[ShoppingListController::class,'delete_all']);
 });

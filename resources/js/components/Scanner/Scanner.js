@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Scanner() {
   const navigate= useNavigate();
   const _onDetected = result => {
-    navigate('/android_asset/index.html',{state:{barcode: result }});
+    navigate('/product-list',{state:{barcode: result }});
   }
 
     return (

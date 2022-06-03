@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import Search from "./SearchBar/Search";
-import ScanButton from "./ScanButton/ScanButton";
 import { Box } from "@chakra-ui/react";
 import axios from "axios";
 import Aos from "aos";
@@ -10,7 +9,6 @@ import { useMediaQuery } from "react-responsive";
 import { useLocation } from 'react-router-dom';
 
 export default function ProductList(props) {
-    //const [search, setSearch] = useState([]);
     const location = useLocation();
     const barcode = location.state?.barcode;
 
@@ -89,7 +87,6 @@ export default function ProductList(props) {
                 </Box>
             )}
 
-            <ScanButton></ScanButton>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 .home-container{
     overflow: scroll; 
     top: 50px;
+    z-index: 1;
 }
 .shops {
     padding-left: 100px;

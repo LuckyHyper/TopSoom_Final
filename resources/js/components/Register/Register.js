@@ -25,7 +25,7 @@ function Register() {
                     localStorage.setItem("auth_token", res.data.token);
                     localStorage.setItem("auth_name", res.data.username);
                     swal("Success", res.data.message, "success");
-                    navigate("/android_asset/index.html");
+                    navigate("/");
                 } else {
                     setRegister({
                         ...register,
