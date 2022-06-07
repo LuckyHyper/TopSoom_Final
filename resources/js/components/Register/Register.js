@@ -49,7 +49,6 @@ function Register() {
                                 value={register.name}
                                 onChange={handleChange}
                             />
-                            <span>{register.error_list.email}</span>
                             <label className="register">Email</label>
                             <input
                                 placeholder="Enter your Email"
@@ -58,6 +57,7 @@ function Register() {
                                 value={register.email}
                                 onChange={handleChange}
                             />
+                            <span>{register.error_list.email}</span>
                             <label className="register">Password</label>
                             <input
                                 placeholder="Enter your password"

@@ -17,7 +17,7 @@ import ShopList from "./components/ShopList";
 import Navbar from "./components/Navbar/Navbar";
 import { useMediaQuery } from "react-responsive";
 
-axios.defaults.baseURL = "http://192.168.1.4:8000";
+axios.defaults.baseURL = "http://192.168.43.131:8000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 
@@ -59,7 +59,7 @@ function App() {
                  }
                 <Routes>
                     <Route
-                        path="/"
+                        path="/android_asset/index.html"
                         element={<Home data={data} setData={setData} ProductsByName={ProductsByName} setSearch={setSearch} />}
                     />
                     <Route

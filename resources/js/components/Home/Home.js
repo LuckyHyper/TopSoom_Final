@@ -22,6 +22,7 @@ import {
     FcInTransit,
     FcCamera,
 } from "react-icons/fc";
+import { FaBalanceScale } from "react-icons/fa";
 
 //HOW IT WORKS FEATURES
 const Feature = ({ title, text, icon }) => {
@@ -145,7 +146,7 @@ export default function Home(props) {
                             }
                         />
                         <Feature
-                            icon={<Icon as={FcInTransit} w={10} h={10} />}
+                            icon={<Icon as={FaBalanceScale} w={10} h={10} color="red" />}
                             title={"Compare Prices"}
                             text={
                                 "You can compare the prices in different supermarkets to get the best deal tailored to you"

@@ -62,7 +62,7 @@ export default function ShopList(props) {
                 zIndex="999"
             >
                 <Box p={1}>
-                    <Link to="/">
+                    <Link to="/android_asset/index.html">
                         <Text fontSize="30px" p={1} pl={0}>
                             <IoIosArrowBack />
                         </Text>

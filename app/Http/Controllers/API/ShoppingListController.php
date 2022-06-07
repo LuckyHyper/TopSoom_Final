@@ -17,7 +17,7 @@ class ShoppingListController extends Controller
         $id = Auth::user()->id;
         $product = ShoppingList::where('user_id','=',$id)->where('barcode', '=', $request->barcode)->first();
         if ($product === null) {
-            $shoplist = ShoppingList::create([ 
+            ShoppingList::create([ 
                 'user_id' => $id,
                 'barcode' => $request->barcode,
                 'product_name' => $request->product_name
